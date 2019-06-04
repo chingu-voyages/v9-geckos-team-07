@@ -1,8 +1,8 @@
 {
   "name": "v9-geckos-team-07",
   "version": "0.0.1",
-  "description": "GnuCash clone",
   "private": true,
+  "description": "GnuCash clone",
   "keywords": [
     "Accounting",
     "React"
@@ -27,5 +27,9 @@
   "devDependencies": {
     "eslint": "^5.16.0",
     "eslint-config-jnmorse": "^2.3.1"
+  },
+  "engines": {
+    "node": "10.16.0",
+    "npm": "6.9.0"
   }
 }
