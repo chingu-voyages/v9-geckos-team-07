@@ -1,0 +1,31 @@
+{
+  "name": "v9-geckos-team-07",
+  "version": "0.0.1",
+  "description": "GnuCash clone",
+  "private": true,
+  "keywords": [
+    "Accounting",
+    "React"
+  ],
+  "homepage": "https://github.com/chingu-voyages/v9-geckos-team-07#readme",
+  "bugs": {
+    "url": "https://github.com/chingu-voyages/v9-geckos-team-07/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chingu-voyages/v9-geckos-team-07.git"
+  },
+  "license": "MIT",
+  "author": "Joseph Morse <tamed.lionheart@gmail.com>",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "npm --prefix server install",
+    "lint": "eslint .",
+    "test": "npm run test:server",
+    "test:server": "npm --prefix server test"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-jnmorse": "^2.3.1"
+  }
+}
