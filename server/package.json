@@ -1,13 +1,14 @@
 {
   "name": "server",
   "version": "0.0.1",
+  "private": true,
   "description": "",
+  "license": "MIT",
+  "author": "Joseph Morse <tamed.lionheart@gmail.com>",
   "main": "index.js",
   "scripts": {
     "test": "jest"
   },
-  "author": "Joseph Morse <tamed.lionheart@gmail.com>",
-  "license": "MIT",
   "dependencies": {
     "express": "^4.17.1"
   },
