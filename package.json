@@ -21,15 +21,20 @@
   "scripts": {
     "postinstall": "npm --prefix server install",
     "lint": "eslint .",
-    "test": "npm run test:server",
+    "test": "jest",
     "test:server": "npm --prefix server test"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
-    "eslint-config-jnmorse": "^2.3.1"
+    "eslint-config-jnmorse": "^2.3.1",
+    "jest": "^24.8.0",
+    "supertest": "^4.0.2"
   },
   "engines": {
     "node": "10.16.0",
     "npm": "6.9.0"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
