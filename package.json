@@ -24,8 +24,9 @@
     "dev:server": "nodemon index.js",
     "postinstall": "npm --prefix server install",
     "lint": "eslint .",
-    "test": "jest --forceExit",
-    "test:watch": "jest --watchAll"
+    "test": "run-s test:*",
+    "watch:test": "jest --watchAll",
+    "test:server": "jest --forceExit"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
