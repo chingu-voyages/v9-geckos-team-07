@@ -7,6 +7,8 @@ const books = require('./books')
 
 const userSchema = new Schema({
   googleId: String,
+  name: String,
+  photo: String,
   emails: [emails],
   books: [books]
 })
