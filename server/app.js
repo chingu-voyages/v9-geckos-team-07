@@ -41,4 +41,4 @@ app.get('/', (req, res) => {
   res.send('hi there')
 })
 
-module.exports = app
+module.exports = { app, mongoose }
