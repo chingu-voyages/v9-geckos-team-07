@@ -11,6 +11,10 @@ dotenv.config()
 const authRoutes = require('./routes/auth-routes')
 const keys = require('./config/keys')
 
+mongoose.Promise = global.Promise
+mongoose.connect(process.env.MONGODB, { useNewUrlParser: true })
+
+require('./models/user')
 require('./services/passport')
 
 const app = express()
@@ -30,9 +34,6 @@ app.use(
 
 app.use(passport.initialize())
 app.use(passport.session())
-
-mongoose.Promise = global.Promise
-mongoose.connect(process.env.MONGODB, { useNewUrlParser: true })
 
 app.use('/auth', authRoutes())
 
