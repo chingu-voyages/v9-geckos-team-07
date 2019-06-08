@@ -11,8 +11,8 @@ North Star Statement: “the personal finance tracker for the web”.
 
 
 User Stories
-1. As a User, I can track my personal financial information, so that I can determine where my money is being spent.
-2. As a user, I can use a browser-based web app, so that I can securely access my personal finance tracker wherever I am.
+1. As a user, I can track my personal financial information, so that I can determine where my money is being spent.
+2. As a user, I can sign into my browser-based app, so that I can securely access my personal finance tracker wherever I am.
 
 
 
@@ -25,38 +25,62 @@ App Functions
 
 
 App Features
-1. Keep track of (all) your personal finance transactions via an accountng-based transaction register.
+
+1. General Features.
     a. Accounting Features
         - Double Entry
         - Split Transactions
         - Chart of Accounts
         - General Journal
         - Income/Expense Account Types (Categories)
-    b. Transaction Register Features
+        
+
+            
+2. Tracker Features.
+    a. "New Account Hierarchy Setup Assistant" Feature // Setup Assistant Window
+        - Create a file to store real data // Screen 1
+        - Select currency to use // Screen 2
+        - Set the New Book option // Screen 3
+        - Select Chart of Accounts // Screen 4
+        - Set an opening balance on each account // Screen 5
+        - Apply dialog // Screen 6
+        - Save dialog // Screen 7
+    
+    b. "Account Tree" Feature // Account Tree Window
+        - Display Chart of Accounts tree
+        
+    c. "Account Register" Feature // Account Register Window
         - Type directly into the register
         - Tab between fields
-        - Use quick-fill to automatically complete transactions
-    c. UI Features
+        - Use quick-fill to automatically complete transactions  
+    
+    d. Enter deposits.
+
+    e. Enter withdrawls.
+    
+    f. "Reconcile Accounts" Feature // Reconcile Window
+
+    g. Reports Feature: Generate reports to represent financial status
+        - Transaction Report
+        - Cash Flow Report
+        
+    h. Graphs Features: Generate graphs to represent financial status
+        - Transactions Graph
+        - Cash Flow Graph
+        
+        
+
+2. Web Application Features
+    a. Web Frontend Feature
+        - SPA architecture
+        - Responsive Design
+        - Easy to use Menus
         - Conforms to the GNOME Human Interface Guidelines
-        - Easy to use menus
-        - Responsive design
-
-
-2. Determine where your money is being spent via reports and graphs.
-    a. Reporting Feature
-        - Generate reports to represent financial status
-    b. Graphs Features
-        - Generate graphs to represent financial status
-
-
-3. Access your personal finance tracker from anywhere via the web.
-    a. Web Application Features
-        - Web Frontend
-        - Web Backend
-
-
-4. Secure your financial information online via account login/sign-up in browser.
-    a. Username/Password login Feature
-    b. Google OAuth login Feature
+        
+    b. Web Backend Feature
+    
+    c. User Account Feature
+        - Username/Password login Feature
+        - Google OAuth login Feature
     
     
