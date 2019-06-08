@@ -1,0 +1,12 @@
+{
+  "_id": "user1",
+  "googleId": "101070151011264349786",
+  "name": "Joseph Morse",
+  "emails": [
+    {
+      "_id": "bcd133556abc",
+      "value": "tamed.lionheart@gmail.com"
+    }
+  ],
+  "photo": "https://lh6.googleusercontent.com/-MhvaFnUn7no/AAAAAAAAAAI/AAAAAAAACk8/FAt7njn2lzw/photo.jpg"
+}

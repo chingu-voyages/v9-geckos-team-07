@@ -1,0 +1,17 @@
+[
+  {
+    "_id": "entry1",
+    "_book": "book1",
+    "date": 1560011780882,
+    "description": "snickers",
+    "splits": [
+      {
+        "_id": "split1",
+        "fromAccount": "accounts2",
+        "toAccount": "account3",
+        "fromAmount": 1.25,
+        "toAmount": 1.25
+      }
+    ]
+  }
+]

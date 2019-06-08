@@ -1,0 +1,38 @@
+[
+  {
+    "_id": "book1",
+    "_user": "user1",
+    "name": "My First Account Book",
+    "descripton": "fiscal year 2019",
+    "accounts": [
+      {
+        "_id": "accounts1",
+        "name": "assets",
+        "type": "bank",
+        "description": "assets",
+        "placeholder": true,
+        "subAccounts": [
+          "accounts2"
+        ]
+      },
+      {
+        "_id": "accounts2",
+        "name": "checking",
+        "type": "bank",
+        "description": "checking account",
+        "placeholder": false,
+        "subAccounts": []
+      },
+      {
+        "_id": "accounts3",
+        "name": "expenses",
+        "type": "expesnes",
+        "description": "expenses",
+        "placeholder": false,
+        "subAccounts": []
+      }
+    ],
+    "createdDate": 1560011780882,
+    "updatedDate": 1560011780882
+  }
+]
