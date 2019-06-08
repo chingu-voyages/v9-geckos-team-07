@@ -1,18 +1,22 @@
 Project/MVP Definition
 
 
+
 Project choice: “browser-based GnuCash clone”.
+
 
 North Star Statement: “the personal finance tracker for the web”.
 
+
 App Functions
-1. Keep track of (all) your personal finance transactions.
-2. Determine where your money is being spent.
-3. Access your personal finance tracker from anywhere.
-4. Secure account login/sign-up in browser.
+1. Keep track of (all) your personal finance transactions via an accountng-based transaction register.
+2. Determine where your money is being spent via reports and graphs.
+3. Access your personal finance tracker from anywhere via the web.
+4. Secure your financial information online via account login/sign-up in browser.
+
 
 App Features
-1. Keep track of (all) your personal finance transactions.
+1. Keep track of (all) your personal finance transactions via an accountng-based transaction register.
     a. Accounting Features
         - Double Entry
         - Split Transactions
@@ -29,20 +33,20 @@ App Features
         - Responsive design
 
 
-2. Determine where your money is being spent.
+2. Determine where your money is being spent via reports and graphs.
     a. Reporting Feature
         - Generate reports to represent financial status
     b. Graphs Features
         - Generate graphs to represent financial status
 
 
-3. Access your personal finance tracker from anywhere.
+3. Access your personal finance tracker from anywhere via the web.
     a. Web Application Features
         - Web Frontend
         - Web Backend
 
 
-4. Secure account login/sign-up in browser.
+4. Secure your financial information online via account login/sign-up in browser.
     a. Username/Password login Feature
     b. Google OAuth login Feature
     
