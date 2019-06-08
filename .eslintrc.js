@@ -1,7 +1,11 @@
 module.exports = {
   extends: 'jnmorse',
   rules: {
-    'import/no-unused-modules': 'off'
+    // temporarly disabling some rules tht vscode is complaining about
+    'import/no-unused-modules': 'off',
+    'react/state-in-constructor': 'off',
+    'react/prefer-read-only-props': 'off',
+    'react/static-property-placement': 'off'
   },
   overrides: [
     {
