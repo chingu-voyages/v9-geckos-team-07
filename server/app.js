@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const passport = require('passport')
 const cookieSession = require('cookie-session')
 const mongoose = require('mongoose')
+const { resolve } = require('path')
 
 dotenv.config()
 
@@ -37,8 +38,16 @@ app.use(passport.session())
 
 app.use('/auth', authRoutes())
 
-app.get('/', (req, res) => {
-  res.send('hi there')
-})
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(resolve(__dirname, '../client/build')))
+
+  app.get('*', (req, res) => {
+    res.sendFile(resolve(__dirname, '..', 'client/build/index.html'))
+  })
+} else {
+  app.get('/', (req, res) => {
+    res.send({ error: 'base route only works in production' })
+  })
+}
 
 module.exports = { app, mongoose }
