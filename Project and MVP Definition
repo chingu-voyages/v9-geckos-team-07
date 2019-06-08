@@ -5,7 +5,15 @@ Project/MVP Definition
 Project choice: “browser-based GnuCash clone”.
 
 
+
 North Star Statement: “the personal finance tracker for the web”.
+
+
+
+User Stories
+1. As a User, I can track my personal financial information, so that I can determine where my money is being spent.
+2. As a user, I can use a browser-based web app, so that I can securely access my personal finance tracker wherever I am.
+
 
 
 App Functions
@@ -13,6 +21,7 @@ App Functions
 2. Determine where your money is being spent via reports and graphs.
 3. Access your personal finance tracker from anywhere via the web.
 4. Secure your financial information online via account login/sign-up in browser.
+
 
 
 App Features
