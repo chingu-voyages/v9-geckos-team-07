@@ -1,5 +1,3 @@
-const { Express } = require('jest-express/lib/express')
-
 const request = require('supertest')
 
 const { app: server, mongoose } = require('./app')
@@ -7,15 +5,10 @@ const { app: server, mongoose } = require('./app')
 jest.mock('morgan', () => jest.fn(() => (req, res, next) => next()))
 
 describe('server tests', () => {
-  let app
-  beforeEach(() => {
-    app = new Express()
-  })
+  beforeEach(() => {})
 
   afterEach(async done => {
     await mongoose.disconnect()
-    app.resetMocked()
-
     done()
   })
 

@@ -21,7 +21,6 @@
   "scripts": {
     "dev": "run-p dev:*",
     "dev:server": "nodemon index.js",
-    "postinstall": "npm --prefix server install",
     "lint": "eslint .",
     "start": "node index.js",
     "test": "run-s test:*",
@@ -40,12 +39,11 @@
   },
   "devDependencies": {
     "eslint": "^5.16.0",
-    "eslint-config-jnmorse": "^2.3.1",
+    "eslint-config-jnmorse": "^2.4.0",
     "jest": "^24.8.0",
-    "jest-express": "^1.10.1",
     "nodemon": "^1.19.1",
     "npm-run-all": "^4.1.5",
-    "superagent": "^5.0.5",
+    "superagent": "^5.0.6",
     "supertest": "^4.0.2"
   },
   "engines": {
