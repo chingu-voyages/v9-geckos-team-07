@@ -42,46 +42,55 @@ I. Tracker Features.
         - Chart of Accounts
         - General Journal
         
-    2. "Accounts" Feature
-        - Display Chart of Accounts tree // Account Tree Window
+        
+    2. "Individual Account" Feature
         - Bank Accounts: Checking and Savings // GnuCash Account
         - Income & Expense Accounts // GnuCash Account
         - Balance Sheet Accounts // GnuCash Account
         
-    3. "New Account Hierarchy Setup Assistant" Feature // Setup Assistant Window
-        - Create a file to store real data // Screen 1
-        - Select currency to use // Screen 2
-        - Set the New Book option // Screen 3
-        - Select Chart of Accounts // Screen 4
-        - Set an opening balance on each account // Screen 5
-        - Apply dialog // Screen 6
-        - Save dialog // Screen 7
         
-    4. "Account Register" Feature // Account Register Window
+    3. Chart of Accounts" Feature 
+        - "New Account Hierarchy Setup Assistant" // Setup Assistant Screen
+           - Create a file to store real data // Screen 1
+           - Select currency to use // Screen 2
+           - Set the New Book option // Screen 3
+           - Select Chart of Accounts // Screen 4
+           - Set an opening balance on each account // Screen 5
+           - Apply dialog // Screen 6
+           - Save dialog // Screen 7
+       - "Chart of Accounts Tree" // Account Tree Screen
+       
+        
+    4. "Account Register" Feature // Account Register Screen
         - Type directly into the register
         - Tab between fields
         - Use quick-fill to automatically complete transactions  
-    
-    5. "Transactions" Feature
-        - Enter deposits.
-        - Enter withdrawls.
-    
-    6. "Reports" Feature: Generate reports to represent financial status
-        - Transaction Report
-        - Cash Flow Report
+        - Enter transactions (deposits, withdrawls)
+        - Delete transactions
+        - Edit transactions
+        * Note
+        * label
         
-    *. "Graphs" Features: Generate graphs to represent financial status
-        - Transactions Graph
-        - Cash Flow Graph
+    
+    5. "Reports" Feature // Report Screen
+        - Generate report (transaction report)
+        - View a generated report
+        - Download/Share report
+        * Save reports in user account
+        
+        
+    *. "Graphs" Features // Graphs Screen
         
         
 
 II. Web Application Features
     1. Application Frontend Feature
-        - SPA architecture (no page reloads, flickering elements)
+        - Client-Side SPA, run in browser (native app-like experience, no page reloads/flickering elements)
         - Component-based UI
         - Fast UI
         - Responsive Design
+        - Information Design
+        - Main window with menu-driven screens
         - Easy to use Menus
         - Conforms to the GNOME Human Interface Guidelines
         
@@ -90,5 +99,6 @@ II. Web Application Features
     3. User Account Feature
         - Username/Password login Feature
         - Google OAuth login Feature
+        * Save user info (transactions data, reports)
     
     
