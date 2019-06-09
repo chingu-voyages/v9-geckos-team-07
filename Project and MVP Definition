@@ -16,28 +16,39 @@ User Stories
 
 
 
+User Benefits
+1. Simple, easy-to-use transaction tracking.
+2. Better determine where money is being spent.
+3. Access financial information from anywhere.
+4. Secure financial inormation online. 
+
+
+
 App Functions
 1. Keep track of (all) your personal finance transactions via an accountng-based transaction register.
 2. Determine where your money is being spent via reports and graphs.
-3. Access your personal finance tracker from anywhere via the web.
-4. Secure your financial information online via account login/sign-up in browser.
+3. Access your personal finance tracker app from anywhere via the web.
+4. Secure your financial information online via an in-app user account.
 
 
 
 App Features
+           
+I. Tracker Features.
 
-1. General Features.
-    a. Accounting Features
-        - Double Entry
-        - Split Transactions
+    1. "Accounting" Feature
+        - Double Entry (Debits & Credits)
+        - Split Transactions (Ledger Entries)
         - Chart of Accounts
         - General Journal
-        - Income/Expense Account Types (Categories)
         
-
-            
-2. Tracker Features.
-    a. "New Account Hierarchy Setup Assistant" Feature // Setup Assistant Window
+    2. "Accounts" Feature
+        - Display Chart of Accounts tree // Account Tree Window
+        - Bank Accounts: Checking and Savings // GnuCash Account
+        - Income & Expense Accounts // GnuCash Account
+        - Balance Sheet Accounts // GnuCash Account
+        
+    3. "New Account Hierarchy Setup Assistant" Feature // Setup Assistant Window
         - Create a file to store real data // Screen 1
         - Select currency to use // Screen 2
         - Set the New Book option // Screen 3
@@ -45,41 +56,38 @@ App Features
         - Set an opening balance on each account // Screen 5
         - Apply dialog // Screen 6
         - Save dialog // Screen 7
-    
-    b. "Account Tree" Feature // Account Tree Window
-        - Display Chart of Accounts tree
         
-    c. "Account Register" Feature // Account Register Window
+    4. "Account Register" Feature // Account Register Window
         - Type directly into the register
         - Tab between fields
         - Use quick-fill to automatically complete transactions  
     
-    d. Enter deposits.
-
-    e. Enter withdrawls.
+    5. "Transactions" Feature
+        - Enter deposits.
+        - Enter withdrawls.
     
-    f. "Reconcile Accounts" Feature // Reconcile Window
-
-    g. Reports Feature: Generate reports to represent financial status
+    6. "Reports" Feature: Generate reports to represent financial status
         - Transaction Report
         - Cash Flow Report
         
-    h. Graphs Features: Generate graphs to represent financial status
+    *. "Graphs" Features: Generate graphs to represent financial status
         - Transactions Graph
         - Cash Flow Graph
         
         
 
-2. Web Application Features
-    a. Web Frontend Feature
-        - SPA architecture
+II. Web Application Features
+    1. Application Frontend Feature
+        - SPA architecture (no page reloads, flickering elements)
+        - Component-based UI
+        - Fast UI
         - Responsive Design
         - Easy to use Menus
         - Conforms to the GNOME Human Interface Guidelines
         
-    b. Web Backend Feature
+    2. Application Backend Feature
     
-    c. User Account Feature
+    3. User Account Feature
         - Username/Password login Feature
         - Google OAuth login Feature
     
