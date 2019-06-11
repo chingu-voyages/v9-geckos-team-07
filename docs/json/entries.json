@@ -7,10 +7,15 @@
     "splits": [
       {
         "_id": "split1",
-        "fromAccount": "accounts2",
-        "toAccount": "account3",
-        "fromAmount": 1.25,
-        "toAmount": 1.25
+        "account": "accounts2",
+        "in": 0.00,
+        "out": 1.25
+      },
+      {
+        "_id": "split2",
+        "account": "accounts3",
+        "in": 1.25,
+        "out": 0.00
       }
     ]
   }
