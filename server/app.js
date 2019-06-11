@@ -9,14 +9,16 @@ const { resolve } = require('path')
 
 dotenv.config()
 
+require('./models/user')
+require('./models/books')
+require('./models/entries')
+require('./services/passport')
+
 const authRoutes = require('./routes/auth-routes')
 const keys = require('./config/keys')
 
 mongoose.Promise = global.Promise
 mongoose.connect(process.env.MONGODB, { useNewUrlParser: true })
-
-require('./models/user')
-require('./services/passport')
 
 const app = express()
 
