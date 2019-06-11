@@ -15,6 +15,8 @@ require('./models/entries')
 require('./services/passport')
 
 const authRoutes = require('./routes/auth-routes')
+const bookRoutes = require('./routes/book-routes')
+
 const keys = require('./config/keys')
 
 mongoose.Promise = global.Promise
@@ -39,6 +41,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use('/auth', authRoutes())
+app.use('/api', bookRoutes())
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(resolve(__dirname, '../client/build')))
