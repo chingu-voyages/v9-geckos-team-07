@@ -7,29 +7,27 @@
     "accounts": [
       {
         "_id": "accounts1",
+        "_parent": false,
         "name": "assets",
         "type": "bank",
         "description": "assets",
-        "placeholder": true,
-        "subAccounts": [
-          "accounts2"
-        ]
+        "placeholder": true
       },
       {
         "_id": "accounts2",
+        "_parent": "account1",
         "name": "checking",
         "type": "bank",
         "description": "checking account",
-        "placeholder": false,
-        "subAccounts": []
+        "placeholder": false
       },
       {
         "_id": "accounts3",
+        "_parent": false,
         "name": "expenses",
         "type": "expesnes",
         "description": "expenses",
-        "placeholder": false,
-        "subAccounts": []
+        "placeholder": false
       }
     ],
     "createdDate": 1560011780882,
