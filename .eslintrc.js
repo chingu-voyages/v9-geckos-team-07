@@ -5,16 +5,22 @@ module.exports = {
     'import/no-unused-modules': 'off',
     'react/state-in-constructor': 'off',
     'react/prefer-read-only-props': 'off',
+    'import/no-relative-parent-imports': 'off',
     'react/static-property-placement': 'off'
   },
   overrides: [
     {
       files: [
-        '**/__tests__/**/*.js',
-        '*.test.js'
+        'client/**/__tests__/**/*.js',
+        'client/**/*.test.js',
+        'client/src/setupTest.js'
       ],
       env: {
+        browser: true,
         jest: true
+      },
+      rules: {
+        'import/no-extraneous-dependencies': 'off'
       }
     },
     {
@@ -39,12 +45,6 @@ module.exports = {
       files: ['client/src/action/**/*.js', 'client/src/reducers/**/*.js'],
       rules: {
         'import/group-exports': 'off'
-      }
-    },
-    {
-      files: ['client/src/reducers/**/*.js'],
-      rules: {
-        'import/no-relative-parent-imports': 'off'
       }
     }
   ]
