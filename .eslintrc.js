@@ -28,6 +28,24 @@ module.exports = {
       env: {
         browser: true
       }
+    },
+    {
+      files: ['client/src/actions/**/*.js'],
+      rules: {
+        'import/prefer-default-export': 'off'
+      }
+    },
+    {
+      files: ['client/src/action/**/*.js', 'client/src/reducers/**/*.js'],
+      rules: {
+        'import/group-exports': 'off'
+      }
+    },
+    {
+      files: ['client/src/reducers/**/*.js'],
+      rules: {
+        'import/no-relative-parent-imports': 'off'
+      }
     }
   ]
 }

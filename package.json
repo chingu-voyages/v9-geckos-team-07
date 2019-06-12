@@ -19,11 +19,14 @@
   "author": "Joseph Morse <tamed.lionheart@gmail.com>",
   "main": "index.js",
   "scripts": {
+    "postinstall": "npm --prefix client install",
     "dev": "run-p dev:*",
+    "dev:client": "npm --prefix client start",
     "dev:server": "nodemon index.js",
     "lint": "eslint .",
     "start": "node index.js",
     "test": "run-s test:*",
+    "test:client": "CI=true npm --prefix client test",
     "test:server": "jest",
     "watch:test": "jest --watchAll"
   },

@@ -1,0 +1,11 @@
+:root {
+  font-size: calc(14px * 0.2vw)
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
