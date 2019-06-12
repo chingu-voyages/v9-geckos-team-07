@@ -1,0 +1,15 @@
+#siteNav {
+  display: flex;
+  flex-direction: row;
+}
+
+.list {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  padding: 0;
+}
+
+.item {
+  padding: 0 1.5rem;
+}

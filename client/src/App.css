@@ -1,5 +1,6 @@
 :root {
-  font-size: calc(14px * 0.2vw)
+  font-size: calc(14px * 0.2vw);
+  font-family: Roboto, sans-serif;
 }
 
 *, *::before, *::after {
@@ -7,5 +8,10 @@
 }
 
 body {
+  font-family: inherit;
   margin: 0;
+}
+
+a {
+  text-decoration: none;
 }

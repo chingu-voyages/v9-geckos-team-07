@@ -4,6 +4,10 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import Layout from './components/layout'
+import Home from './pages/home'
+import AccountBooks from './pages/account-books'
+
+import requireLogin from './lib/require-login'
 
 import * as actions from './actions'
 
@@ -27,13 +31,9 @@ export class App extends Component {
       <BrowserRouter>
         <Layout>
           <Switch>
-            <Route exact path="/">
-              <p>Home Page</p>
-            </Route>
+            <Route exact path="/" component={Home} />
 
-            <Route exact path="/books">
-              <p>Acount Books</p>
-            </Route>
+            <Route exact path="/books" component={requireLogin(AccountBooks)} />
           </Switch>
         </Layout>
       </BrowserRouter>

@@ -1,13 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald|Source+Sans+Pro&display=swap');
+
+:root {
+  font-size: calc(14px + 0.2vw);
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+a {
+  text-decoration: none;
+}
+
+header {
+  font-family: Oswald, sans-serif;
 }
