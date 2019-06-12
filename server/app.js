@@ -6,6 +6,7 @@ const passport = require('passport')
 const cookieSession = require('cookie-session')
 const mongoose = require('mongoose')
 const { resolve } = require('path')
+const compression = require('compression')
 
 dotenv.config()
 
@@ -26,6 +27,7 @@ const app = express()
 
 // Setup Morgan
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
+app.use(compression())
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
