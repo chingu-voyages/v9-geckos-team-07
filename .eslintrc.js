@@ -1,14 +1,20 @@
 module.exports = {
   extends: 'jnmorse',
+  parser: 'babel-eslint',
   rules: {
-    // temporarly disabling some rules tht vscode is complaining about
+    // temporaly disabling cause editor plugin doesn't like
     'import/no-unused-modules': 'off',
     'react/state-in-constructor': 'off',
     'react/prefer-read-only-props': 'off',
-    'import/no-relative-parent-imports': 'off',
     'react/static-property-placement': 'off'
   },
   overrides: [
+    {
+      files: ['**/*.test.js', '**/__tests__/**/*.js'],
+      env: {
+        jest: true
+      }
+    },
     {
       files: [
         'client/**/__tests__/**/*.js',
@@ -17,7 +23,6 @@ module.exports = {
       ],
       env: {
         browser: true,
-        jest: true
       },
       rules: {
         'import/no-extraneous-dependencies': 'off'
