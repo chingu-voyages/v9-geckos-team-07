@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import Layout from './components/layout'
 import Home from './pages/home'
 import AccountBooks from './pages/account-books'
+import NewAccountBook from './pages/account-books/new-book'
 
 import requireLogin from './lib/require-login'
 
@@ -33,7 +34,20 @@ export class App extends Component {
           <Switch>
             <Route exact path="/" component={Home} />
 
-            <Route exact path="/books" component={requireLogin(AccountBooks)} />
+            <Route
+              exact
+              path="/account-books"
+              component={requireLogin(AccountBooks)}
+            />
+
+            <Route exact path="/account-books/new" component={NewAccountBook} />
+            <Route
+              exact
+              path="/account-books/:id"
+              component={props => {
+                return <div>Book Id: {props.match.params.id}</div>
+              }}
+            />
           </Switch>
         </Layout>
       </BrowserRouter>

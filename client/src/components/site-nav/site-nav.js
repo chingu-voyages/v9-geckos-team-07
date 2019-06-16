@@ -10,7 +10,7 @@ const SiteNav = ({ user }) => {
       <nav id={styles.siteNav}>
         <ul className={styles.list}>
           <li className={styles.item}>
-            <Link to="/books">Account Books</Link>
+            <Link to="/account-books">Account Books</Link>
           </li>
           <li className={styles.item}>
             <a href="/auth/logout">Logout</a>
