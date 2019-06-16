@@ -11,5 +11,18 @@ module.exports = () => {
     res.send(books)
   })
 
+  router.post('/books', async (req, res) => {
+    const { title, description, template } = req.body
+    const book = await new Books({ _user: req.user, title, description })
+
+    const result = await book.save()
+
+    if (result) {
+      return res.status(201).send('book saved')
+    }
+
+    return res.status(500).send('failed')
+  })
+
   return router
 }
