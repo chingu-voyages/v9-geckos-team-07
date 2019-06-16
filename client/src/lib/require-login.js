@@ -1,27 +1,27 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+
+import userProp from '../prop-types/user'
 
 const requireLogin = (AuthComponent = Component) => {
   class RequireLogin extends Component {
     static get propTypes() {
       return {
-        user: PropTypes.oneOfType([
-          PropTypes.bool,
-          PropTypes.shape({ name: PropTypes.string })
-        ]).isRequired
+        user: userProp.isRequired
       }
     }
 
     isAutherized() {
       const { user } = this.props
 
-      if (user) {
-        return <AuthComponent user={user} />
+      if (user === 'pending') {
+        return <p>loading...</p>
+      } else if (user.error) {
+        return <Redirect to="/" />
       }
 
-      return <Redirect to="/" />
+      return <AuthComponent user={user} />
     }
 
     render() {

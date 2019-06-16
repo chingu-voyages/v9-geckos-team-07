@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { FETCH_USER } from './types'
+import { FETCH_USER, FETCH_USER_FAIL } from './types'
 
 export const fetchUser = () => async dispatch => {
   try {
@@ -7,6 +7,6 @@ export const fetchUser = () => async dispatch => {
 
     dispatch({ type: FETCH_USER, payload: response.data })
   } catch (error) {
-    console.error('not logged in')
+    dispatch({ type: FETCH_USER_FAIL, payload: 'not logged in' })
   }
 }

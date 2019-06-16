@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
+import userProp from '../../prop-types/user'
 
 import styles from './site-nav.module.css'
 
 const SiteNav = ({ user }) => {
-  if (user) {
+  if (user !== 'pending' && !user.error) {
     return (
       <nav id={styles.siteNav}>
         <ul className={styles.list}>
@@ -32,12 +32,7 @@ const SiteNav = ({ user }) => {
 }
 
 SiteNav.propTypes = {
-  user: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.shape({
-      name: PropTypes.string
-    })
-  ]).isRequired
+  user: userProp.isRequired
 }
 
 export default SiteNav
