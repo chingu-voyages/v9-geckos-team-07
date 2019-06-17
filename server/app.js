@@ -1,7 +1,6 @@
 const express = require('express')
 const dotenv = require('dotenv')
 const morgan = require('morgan')
-const bodyParser = require('body-parser')
 const passport = require('passport')
 const cookieSession = require('cookie-session')
 const mongoose = require('mongoose')
@@ -29,8 +28,8 @@ const app = express()
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 app.use(compression())
 
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 
 app.use(
   cookieSession({
