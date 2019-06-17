@@ -24,22 +24,19 @@ mongoose.connect(process.env.MONGODB, { useNewUrlParser: true })
 
 const app = express()
 
-// Setup Morgan
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
-app.use(compression())
-
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
-
-app.use(
+// Apply Middleware
+app.use([
+  compression(),
+  morgan(':method :url :status :res[content-length] - :response-time ms'),
+  express.json(),
+  express.urlencoded({ extended: true }),
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,
     keys: [keys.cookieKey]
-  })
-)
-
-app.use(passport.initialize())
-app.use(passport.session())
+  }),
+  passport.initialize(),
+  passport.session()
+])
 
 app.use('/auth', authRoutes())
 app.use('/api', bookRoutes())

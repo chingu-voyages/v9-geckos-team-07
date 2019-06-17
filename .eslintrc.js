@@ -31,7 +31,7 @@ module.exports = {
     {
       files: ['server/**/*.js'],
       rules: {
-        'no-console': 'off'
+        'no-console': 'warn'
       }
     },
     {

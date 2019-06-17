@@ -12,7 +12,7 @@ module.exports = () => {
   })
 
   router.post('/books', async (req, res) => {
-    const { title, description, template } = req.body
+    const { title, description /* , template */ } = req.body
     const book = await new Books({ _user: req.user, title, description })
 
     const result = await book.save()

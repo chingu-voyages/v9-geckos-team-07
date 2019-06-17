@@ -1,8 +1,9 @@
+/* eslint-disable no-console */
 const { app } = require('./server/app')
+const http = require('http')
 
 const PORT = process.env.PORT || 4000
 
-app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Server: listening on port ${PORT}`)
+http.createServer(app).listen(PORT, 'localhost', () => {
+  console.log(`Server Running: http://localhost:${PORT}/`)
 })
