@@ -6,6 +6,7 @@ const cookieSession = require('cookie-session')
 const mongoose = require('mongoose')
 const { resolve } = require('path')
 const compression = require('compression')
+const helmet = require('helmet')
 
 dotenv.config()
 
@@ -35,7 +36,8 @@ app.use([
     keys: [keys.cookieKey]
   }),
   passport.initialize(),
-  passport.session()
+  passport.session(),
+  helmet()
 ])
 
 app.use('/auth', authRoutes())
