@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-const { app } = require('./server/app')
+const { app } = require('./build/index')
 const http = require('http')
 
 const PORT = process.env.PORT || 4000
