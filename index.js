@@ -4,6 +4,6 @@ const http = require('http')
 
 const PORT = process.env.PORT || 4000
 
-http.createServer(app).listen(PORT, 'localhost', () => {
+http.createServer(app).listen(PORT, () => {
   console.log(`Server Running: http://localhost:${PORT}/`)
 })
