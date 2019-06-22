@@ -1,6 +1,6 @@
 import passport from 'passport'
 import passportGoogle from 'passport-google-oauth20'
-import mongoose, { Document } from 'mongoose'
+import mongoose from 'mongoose'
 
 import { keys } from '../config/keys'
 import { UserModel } from '../models/user/user'

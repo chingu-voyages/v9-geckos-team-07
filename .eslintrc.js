@@ -8,8 +8,7 @@ module.exports = {
     'react/prefer-read-only-props': 'off',
     'react/static-property-placement': 'off'
   },
-  overrides: [
-    {
+  overrides: [{
       files: ['**/*.test.js', '**/__tests__/**/*.js'],
       env: {
         jest: true
@@ -26,12 +25,6 @@ module.exports = {
       },
       rules: {
         'import/no-extraneous-dependencies': 'off'
-      }
-    },
-    {
-      files: ['server/**/*.js'],
-      rules: {
-        'no-console': 'warn'
       }
     },
     {
