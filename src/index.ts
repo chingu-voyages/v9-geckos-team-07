@@ -43,6 +43,10 @@ if (process.env.NODE_ENV === 'production') {
   app.get('*', (req, res) => {
     res.sendFile(resolve(__dirname, '..', 'client/build/index.html'))
   })
+} else {
+  app.get('/', (req, res) => {
+    res.status(404).send('base route only available in production')
+  })
 }
 
 export { app, mongoose }
