@@ -24,6 +24,7 @@
     "dev:client": "npm --prefix client start",
     "dev:server": "nodemon index.js",
     "lint": "eslint .",
+    "build": "tsc && npm --prefix client run build",
     "start": "node index.js",
     "test": "run-s test:*",
     "test:client": "CI=true npm --prefix client test",

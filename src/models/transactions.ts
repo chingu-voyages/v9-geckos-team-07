@@ -1,4 +1,4 @@
-import { default as mongoose, Schema } from 'mongoose'
+import mongoose, { Schema } from 'mongoose'
 import { splitSchema } from './splits';
 
 const transactionSchema = new Schema({

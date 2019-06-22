@@ -1,13 +1,14 @@
 import passport from 'passport'
 import passportGoogle from 'passport-google-oauth20'
-import mongoose from 'mongoose'
+import mongoose, { Document } from 'mongoose'
+
 import { keys } from '../config/keys'
-import { UserModel } from '../models/user/user';
+import { UserModel } from '../models/user/user'
 
 const { Strategy } = passportGoogle
 const { google } = keys
 
-const User = mongoose.model('users')
+const User = mongoose.model<UserModel>('users')
 
 export type GoogleProfileEmails = {
   value: string
@@ -28,10 +29,7 @@ passport.serializeUser<UserModel, string>((user, done) => {
   done(null, user.id)
 })
 
-/**
- * Probably something better to put here then mongoose.Document
- */
-passport.deserializeUser<mongoose.Document | null, string>((id, done) => {
+passport.deserializeUser<UserModel | null, string>((id, done) => {
   User.findById(id).then((user) => {
     done(null, user)
   }).catch(() => {
@@ -63,6 +61,7 @@ passport.use(
       }
 
       const user = await new User(googleUser).save()
+
       return done(null, user)
     }
   )
