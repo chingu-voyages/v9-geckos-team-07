@@ -19,6 +19,8 @@ const app = express()
 
 import './models/user'
 import './models/transactions'
+import './services/passport'
+import { authRoutes } from './routes/auth-routes';
 
 app.use([
   compression(),
@@ -33,6 +35,8 @@ app.use([
   passport.initialize(),
   passport.session()
 ])
+
+app.use('/auth', authRoutes())
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(resolve(__dirname, '../client/build')))
