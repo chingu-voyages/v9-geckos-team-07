@@ -1,18 +1,24 @@
 import React, { Component } from 'react'
 import { Redirect, Link } from 'react-router-dom'
-import axios from 'axios'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
-class AccountBooks extends Component {
-  state = { books: [], fetched: false }
-
-  componentDidMount() {
-    this.fetchBooks()
-  }
-
-  async fetchBooks() {
-    const response = await axios.get('/api/books')
-
-    this.setState({ books: response.data, fetched: true })
+export class AccountBooks extends Component {
+  static get propTypes() {
+    return {
+      user: PropTypes.shape({
+        name: PropTypes.string,
+        accountBooks: PropTypes.arrayOf(
+          PropTypes.shape({
+            title: PropTypes.string,
+            description: PropTypes.string,
+            created: PropTypes.string,
+            updated: PropTypes.string,
+            accounts: PropTypes.arrayOf(PropTypes.object)
+          })
+        )
+      }).isRequired
+    }
   }
 
   renderBooks() {
@@ -22,37 +28,41 @@ class AccountBooks extends Component {
     return books.map(book => (
       // eslint-disable-next-line no-underscore-dangle
       <li key={book._id}>
-        {/* eslint-disable-next-line no-underscore-dangle */}
-        <Link to={`/account-books/${book._id}`}>{book.title}</Link>
+        {' '}
+        {/* eslint-disable-next-line no-underscore-dangle */}{' '}
+        <Link to={`/account-books/${book._id}`}> {book.title} </Link>{' '}
       </li>
     ))
   }
 
   render() {
-    const { books, fetched } = this.state
+    const {
+      user: { accountBooks }
+    } = this.props
 
-    if (books.length === 0 && fetched === true) {
+    if (accountBooks.length === 0) {
       return <Redirect to="/account-books/new" />
     }
 
     return (
       <>
         <header>
-          <h2>Account Books</h2>
-        </header>
-
-        <button type="button">Create New Account Book</button>
-
+          <h2> Account Books </h2>{' '}
+        </header>{' '}
+        <button type="button"> Create New Account Book </button>{' '}
         <nav>
           <header>
-            <h3>List of Account Books</h3>
-          </header>
-
-          {this.renderBooks()}
-        </nav>
+            <h3> List of Account Books </h3>{' '}
+          </header>{' '}
+          {this.renderBooks()}{' '}
+        </nav>{' '}
       </>
     )
   }
 }
 
-export default AccountBooks
+const ConnectedAccountBooks = connect(({ user }) => ({
+  user
+}))(AccountBooks)
+
+export { ConnectedAccountBooks }

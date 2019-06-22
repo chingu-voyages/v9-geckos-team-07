@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Home = () => (
+export const Home = () => (
   <>
     <header>
       <h2>Gecko Cash</h2>
@@ -24,5 +24,3 @@ const Home = () => (
     </section>
   </>
 )
-
-export default Home

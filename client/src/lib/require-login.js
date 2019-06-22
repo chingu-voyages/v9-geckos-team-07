@@ -21,7 +21,7 @@ const requireLogin = (AuthComponent = Component) => {
         return <Redirect to="/" />
       }
 
-      return <AuthComponent user={user} />
+      return <AuthComponent user={user} {...this.props} />
     }
 
     render() {
