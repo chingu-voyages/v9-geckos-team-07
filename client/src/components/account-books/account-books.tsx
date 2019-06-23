@@ -25,7 +25,6 @@ export class _AccountBooks extends Component<AccountBooksProps> {
   }
 
   render() {
-    console.log(this.props);
     const {
       user: { accountBooks }
     } = this.props;
