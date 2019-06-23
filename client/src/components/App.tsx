@@ -6,6 +6,7 @@ import { Layout } from './layout';
 import { Home } from './Home';
 import { fetchUser } from '../actions';
 import { StoreState } from '../reducers';
+import { AccountBookRoutes } from './account-books';
 
 interface AppProps {
   fetchUser: Function;
@@ -21,7 +22,10 @@ export class _App extends Component<AppProps> {
       <BrowserRouter>
         <Layout>
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <AccountBookRoutes />
           </Switch>
         </Layout>
       </BrowserRouter>
