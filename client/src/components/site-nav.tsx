@@ -1,11 +1,17 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import userProp from '../../prop-types/user'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import styles from './site-nav.module.css'
+import styles from './site-nav.module.css';
+import { StoreState } from '../reducers';
+import { User } from '../actions';
 
-const SiteNav = ({ user }) => {
-  if (user !== 'pending' && !user.error) {
+interface SiteNavProps {
+  user: User;
+}
+
+export const _SiteNav = ({ user }: SiteNavProps) => {
+  if (user.googleId) {
     return (
       <nav id={styles.siteNav}>
         <ul className={styles.list}>
@@ -17,7 +23,7 @@ const SiteNav = ({ user }) => {
           </li>
         </ul>
       </nav>
-    )
+    );
   }
 
   return (
@@ -28,11 +34,11 @@ const SiteNav = ({ user }) => {
         </li>
       </ul>
     </nav>
-  )
-}
+  );
+};
 
-SiteNav.propTypes = {
-  user: userProp.isRequired
-}
+const mapStateToProps = (state: StoreState): { user: User } => {
+  return { user: state.user };
+};
 
-export default SiteNav
+export const SiteNav = connect(mapStateToProps)(_SiteNav);

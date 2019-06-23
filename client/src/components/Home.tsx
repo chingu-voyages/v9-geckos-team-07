@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export const Home = () => (
   <>
@@ -7,8 +7,8 @@ export const Home = () => (
     </header>
 
     <p>
-      Gecko Cash is a online accounting app that is designed to help you keep
-      track of your money.
+      Gecko Cash is a online accounting application to help you keep track of
+      your money
     </p>
 
     <section>
@@ -23,4 +23,4 @@ export const Home = () => (
       </ul>
     </section>
   </>
-)
+);

@@ -5,7 +5,9 @@
   font-family: 'Source Sans Pro', sans-serif;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
