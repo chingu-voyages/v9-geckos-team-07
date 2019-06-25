@@ -2,7 +2,6 @@ module.exports = {
   env: {
     es6: true
   },
-  parser: '@typescript-eslint/parser',
   parserOptions: {
     sourceType: 'module'
   },
@@ -21,7 +20,7 @@ module.exports = {
     'import/first': 'off',
     'import/prefer-default-export': 'off',
     'import/exports-last': 'off',
-    'no-underscore-dangle': 'off',
+    'no-underscore-dangle': 'off'
   },
   overrides: [
     {

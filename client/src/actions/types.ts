@@ -1,6 +1,7 @@
 export enum ActionTypes {
-  fetchUser,
-  fetchUserFail
+  fetchUser = 'FETCH_USER',
+  fetchUserFail = 'FETCH_USER_FAIL',
+  createAccountBook = 'CREATE_ACCOUNT_BOOK'
 }
 
 export interface Email {
@@ -9,12 +10,27 @@ export interface Email {
 }
 
 export interface AccountBook {
-  _id: string;
+  _id?: string;
   title: string;
   description: string;
-  created: string;
-  updated: string;
-  accounts: [];
+  created?: Date;
+  updated?: Date;
+  accounts?: Account[];
+}
+
+export enum AccountType {
+  Assets = 'assets',
+  Income = 'income',
+  Expense = 'expense',
+  Liability = 'liability'
+}
+
+export interface Account {
+  name: string;
+  type: AccountType;
+  description: string;
+  placeholder: boolean;
+  parent: Account['name'] | null;
 }
 
 export interface User {
@@ -39,6 +55,11 @@ interface FetchFail {
 export interface FetchUserFail {
   type: ActionTypes.fetchUserFail;
   payload: FetchFail;
+}
+
+export interface CreateAccountBook {
+  type: ActionTypes.createAccountBook;
+  payload: AccountBook;
 }
 
 export type Actions = FetchUser | FetchUserFail;

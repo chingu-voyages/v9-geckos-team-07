@@ -1,6 +1,7 @@
 import mongoose, { Document } from 'mongoose';
-import { emailSchema } from './email';
-import { accountBookSchema } from './accountBook';
+
+import { emailSchema, Email } from './email';
+import { accountBookSchema, AccountBook } from './accountBook';
 
 const { Schema } = mongoose;
 
@@ -9,8 +10,8 @@ export interface UserModel extends Document {
   name: string;
   googleId: string;
   photo: string;
-  emails: [];
-  accountBooks: [];
+  emails: Email[];
+  accountBooks: AccountBook[];
 }
 
 export const userSchema = new Schema({
@@ -20,3 +21,5 @@ export const userSchema = new Schema({
   emails: [emailSchema],
   accountBooks: [accountBookSchema]
 });
+
+mongoose.model('users', userSchema);

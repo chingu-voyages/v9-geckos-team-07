@@ -1,6 +1,15 @@
-import { Schema } from 'mongoose';
+import { Schema, Document } from 'mongoose';
 
-const accountBookSchema: Schema = new Schema({
+export interface AccountBook extends Document {
+  _id: string;
+  title: string;
+  description: string;
+  created: Date;
+  updated: Date;
+  accounts: [];
+}
+
+const accountBookSchema: Schema<AccountBook> = new Schema({
   title: String,
   description: String,
   created: { type: Date, default: Date.now },

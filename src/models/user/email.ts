@@ -1,7 +1,11 @@
-import mongoose from 'mongoose';
+import mongoose, { Document } from 'mongoose';
 
 const { Schema } = mongoose;
 
-export const emailSchema = new Schema({
+export interface Email extends Document {
+  value: string;
+}
+
+export const emailSchema = new Schema<Email>({
   value: String
 });

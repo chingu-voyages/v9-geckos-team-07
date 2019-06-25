@@ -25,22 +25,31 @@ export interface GoogleProfile {
   photos: GoogleProfilePhotos[];
 }
 
-passport.serializeUser<UserModel, string>((user, done): void => {
-  done(null, user.id);
-});
+passport.serializeUser<UserModel, string>(
+  (user: UserModel, done): void => {
+    done(null, user.id);
+  }
+);
 
-passport.deserializeUser<UserModel | null, string>((id, done): void => {
-  User.findById(id)
-    .then((user): void => {
-      done(null, user);
-    })
-    .catch((): void => {
-      done('User not found');
-    });
-});
+passport.deserializeUser<UserModel | null, string>(
+  (id: string, done): void => {
+    User.findById(id)
+      .then(
+        (user): void => {
+          done(null, user);
+        }
+      )
+      .catch(
+        (): void => {
+          done('User not found');
+        }
+      );
+  }
+);
 
 passport.use(
-  new Strategy(
+  'google',
+  new passportGoogle.Strategy(
     {
       clientID: google.clientID,
       clientSecret: google.clientSecret,

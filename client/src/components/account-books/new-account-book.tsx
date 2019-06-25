@@ -1,11 +1,18 @@
 import React, { Component, ChangeEvent, FormEvent } from 'react';
 import { connect } from 'react-redux';
+import { newAccountBook, AccountBook } from '../../actions';
 
-export class NewAccountBook extends Component {
+interface NewAccountBookProps {
+  newAccountBook: (accountBook: AccountBook) => void;
+}
+
+export class NewAccountBook extends Component<NewAccountBookProps> {
   public state = { title: '', description: '' };
 
   private onSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
+
+    this.props.newAccountBook(this.state);
   };
 
   private onUpdateTitle = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -48,4 +55,7 @@ export class NewAccountBook extends Component {
   }
 }
 
-export const ConnectedNewAccountBook = connect()(NewAccountBook);
+export const ConnectedNewAccountBook = connect(
+  null,
+  { newAccountBook }
+)(NewAccountBook);

@@ -14,7 +14,7 @@ import './models/user';
 import './models/transactions';
 import './services/passport';
 import { authRoutes } from './routes/auth-routes';
-
+import { apiRoutes } from './routes/api-routes';
 
 mongoose.Promise = global.Promise;
 mongoose.connect(keys.mongo, { useNewUrlParser: true });
@@ -36,16 +36,23 @@ app.use([
 ]);
 
 app.use('/auth', authRoutes());
+app.use('/api', apiRoutes());
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(resolve(__dirname, '../client/build')));
-  app.get('*', (req, res): void => {
-    res.sendFile(resolve(__dirname, '..', 'client/build/index.html'));
-  });
+  app.get(
+    '*',
+    (req, res): void => {
+      res.sendFile(resolve(__dirname, '..', 'client/build/index.html'));
+    }
+  );
 } else {
-  app.get('/', (req, res): void => {
-    res.status(404).send('base route only available in production');
-  });
+  app.get(
+    '/',
+    (req, res): void => {
+      res.status(404).send('base route only available in production');
+    }
+  );
 }
 
 export { app, mongoose };
