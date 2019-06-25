@@ -9,22 +9,24 @@ interface AccountBooksProps {
   user: User;
 }
 
-export class _AccountBooks extends Component<AccountBooksProps> {
-  renderBooks(): JSX.Element[] {
+export class AccountBooks extends Component<AccountBooksProps> {
+  private renderBooks(): JSX.Element[] {
     const { user } = this.props;
 
     if (user.accountBooks) {
-      return user.accountBooks.map(book => (
-        <li key={book._id}>
-          <Link to={`/account-books/${book._id}`}>{book.title}</Link>
-        </li>
-      ));
+      return user.accountBooks.map(
+        (book): JSX.Element => (
+          <li key={book._id}>
+            <Link to={`/account-books/${book._id}`}>{book.title}</Link>
+          </li>
+        )
+      );
     }
 
     return [];
   }
 
-  render() {
+  public render(): JSX.Element {
     const {
       user: { accountBooks }
     } = this.props;
@@ -39,7 +41,7 @@ export class _AccountBooks extends Component<AccountBooksProps> {
           <h2>Account Books</h2>
         </header>
 
-        <button>Create new Account Book</button>
+        <button type="button">Create new Account Book</button>
 
         <nav>
           <header>
@@ -57,4 +59,4 @@ function mapStateToProps({ user }: StoreState): { user: User } {
   return { user };
 }
 
-export const AccountBooks = connect(mapStateToProps)(_AccountBooks);
+export const ConnectedAccountBooks = connect(mapStateToProps)(AccountBooks);

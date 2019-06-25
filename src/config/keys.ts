@@ -1,13 +1,13 @@
-export type GoogleClientConfig = {
+export interface GoogleClientConfig {
   clientID: string;
   clientSecret: string;
-};
+}
 
-export type ServerKeys = {
+export interface ServerKeys {
   cookieKey: string;
   mongo: string;
-  google: GoogleClientConfig
-};
+  google: GoogleClientConfig;
+}
 
 export const keys: ServerKeys = {
   cookieKey: process.env.COOKIE_KEY || '',

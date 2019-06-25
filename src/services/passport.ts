@@ -1,41 +1,43 @@
-import passport from 'passport'
-import passportGoogle from 'passport-google-oauth20'
-import mongoose from 'mongoose'
+import passport from 'passport';
+import passportGoogle from 'passport-google-oauth20';
+import mongoose from 'mongoose';
 
-import { keys } from '../config/keys'
-import { UserModel } from '../models/user/user'
+import { keys } from '../config/keys';
+import { UserModel } from '../models/user/user';
 
-const { Strategy } = passportGoogle
-const { google } = keys
+const { Strategy } = passportGoogle;
+const { google } = keys;
 
-const User = mongoose.model<UserModel>('users')
+const User = mongoose.model<UserModel>('users');
 
-export type GoogleProfileEmails = {
-  value: string
+export interface GoogleProfileEmails {
+  value: string;
 }
 
-export type GoogleProfilePhotos = {
-  value: string
+export interface GoogleProfilePhotos {
+  value: string;
 }
 
-export type GoogleProfile = {
-  id: string,
-  emails: GoogleProfileEmails[],
-  displayName: string,
-  photos: GoogleProfilePhotos[]
+export interface GoogleProfile {
+  id: string;
+  emails: GoogleProfileEmails[];
+  displayName: string;
+  photos: GoogleProfilePhotos[];
 }
 
-passport.serializeUser<UserModel, string>((user, done) => {
-  done(null, user.id)
-})
+passport.serializeUser<UserModel, string>((user, done): void => {
+  done(null, user.id);
+});
 
-passport.deserializeUser<UserModel | null, string>((id, done) => {
-  User.findById(id).then((user) => {
-    done(null, user)
-  }).catch(() => {
-    done('User not found')
-  })
-})
+passport.deserializeUser<UserModel | null, string>((id, done): void => {
+  User.findById(id)
+    .then((user): void => {
+      done(null, user);
+    })
+    .catch((): void => {
+      done('User not found');
+    });
+});
 
 passport.use(
   new Strategy(
@@ -44,25 +46,25 @@ passport.use(
       clientSecret: google.clientSecret,
       callbackURL: '/auth/google/callback'
     },
-    async (accessToken, refreshToken, profile, done) => {
-      const { id, emails, displayName, photos } = profile
+    async (accessToken, refreshToken, profile, done): Promise<void> => {
+      const { id, emails, displayName, photos } = profile;
 
       const googleUser = {
         googleId: id,
         emails,
         name: displayName,
         photos: photos ? photos[0].value : ''
-      }
+      };
 
-      const existingUser = await User.findOne({ googleId: id })
+      const existingUser = await User.findOne({ googleId: id });
 
       if (existingUser) {
-        return done(null, existingUser)
+        return done(null, existingUser);
       }
 
-      const user = await new User(googleUser).save()
+      const user = await new User(googleUser).save();
 
-      return done(null, user)
+      return done(null, user);
     }
   )
-)
+);

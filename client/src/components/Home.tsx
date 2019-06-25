@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Home = () => (
+export const Home = (): JSX.Element => (
   <>
     <header>
       <h2>Gecko Cash</h2>

@@ -1,13 +1,13 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { AccountBooks } from './account-books';
-import { NewAccountBook } from './new-account-book';
+import { ConnectedAccountBooks } from './account-books';
+import { ConnectedNewAccountBook } from './new-account-book';
 
-export function AccountBookRoutes() {
+export function AccountBookRoutes(): JSX.Element {
   return (
     <Switch>
-      <Route exact path="/account-books" component={AccountBooks} />
-      <Route path="/account-books/new" component={NewAccountBook} />
+      <Route exact path="/account-books" component={ConnectedAccountBooks} />
+      <Route path="/account-books/new" component={ConnectedNewAccountBook} />
     </Switch>
   );
 }

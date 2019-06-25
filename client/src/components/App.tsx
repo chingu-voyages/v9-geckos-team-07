@@ -5,19 +5,20 @@ import { connect } from 'react-redux';
 import { Layout } from './layout';
 import { Home } from './Home';
 import { fetchUser } from '../actions';
-import { StoreState } from '../reducers';
 import { AccountBookRoutes } from './account-books';
 
 interface AppProps {
   fetchUser: Function;
 }
 
-export class _App extends Component<AppProps> {
-  componentDidMount() {
-    this.props.fetchUser();
+export class App extends Component<AppProps> {
+  public componentDidMount(): void {
+    const { fetchUser: fetch } = this.props;
+
+    fetch();
   }
 
-  render() {
+  public render(): JSX.Element {
     return (
       <BrowserRouter>
         <Layout>
@@ -33,7 +34,7 @@ export class _App extends Component<AppProps> {
   }
 }
 
-export const App = connect<StoreState>(
+export const ConnectedApp = connect(
   null,
   { fetchUser }
-)(_App);
+)(App);

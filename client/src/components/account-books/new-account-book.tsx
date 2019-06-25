@@ -1,22 +1,24 @@
 import React, { Component, ChangeEvent, FormEvent } from 'react';
 import { connect } from 'react-redux';
 
-class _NewAccountBook extends Component {
-  state = { title: '', description: '' };
+export class NewAccountBook extends Component {
+  public state = { title: '', description: '' };
 
-  onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  private onSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
   };
 
-  onUpdateTitle = (event: ChangeEvent<HTMLInputElement>) => {
+  private onUpdateTitle = (event: ChangeEvent<HTMLInputElement>): void => {
     this.setState({ title: event.target.value });
   };
 
-  onUpdateDescription = (event: ChangeEvent<HTMLTextAreaElement>) => {
+  private onUpdateDescription = (
+    event: ChangeEvent<HTMLTextAreaElement>
+  ): void => {
     this.setState({ description: event.target.value });
   };
 
-  render() {
+  public render(): JSX.Element {
     const { title, description } = this.state;
 
     return (
@@ -46,4 +48,4 @@ class _NewAccountBook extends Component {
   }
 }
 
-export const NewAccountBook = connect()(_NewAccountBook);
+export const ConnectedNewAccountBook = connect()(NewAccountBook);

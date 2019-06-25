@@ -2,15 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { SiteNav } from './site-nav';
 
-import styles from './layout.module.css';
+import './layout.css';
 
 interface LayoutProps {
   children: JSX.Element;
 }
 
-export const Layout = ({ children }: LayoutProps) => (
+export const Layout = ({ children }: LayoutProps): JSX.Element => (
   <>
-    <header id={styles.siteHeader}>
+    <header id="site-header">
       <h1>
         <Link to="/">Gecko Cash</Link>
       </h1>

@@ -1,26 +1,25 @@
-import express from 'express'
-import dotenv from 'dotenv'
-import morgan from 'morgan'
-import compression from 'compression'
-import cookieSession from 'cookie-session'
-import helmet from 'helmet'
-import { resolve } from 'path'
-import mongoose from 'mongoose'
-import passport from 'passport'
+import express from 'express';
+import dotenv from 'dotenv';
+import morgan from 'morgan';
+import compression from 'compression';
+import cookieSession from 'cookie-session';
+import helmet from 'helmet';
+import { resolve } from 'path';
+import mongoose from 'mongoose';
+import passport from 'passport';
+dotenv.config();
 
-dotenv.config()
-
-import { keys } from './config/keys'
-
-mongoose.Promise = global.Promise
-mongoose.connect(keys.mongo, { useNewUrlParser: true })
-
-const app = express()
-
-import './models/user'
-import './models/transactions'
-import './services/passport'
+import { keys } from './config/keys';
+import './models/user';
+import './models/transactions';
+import './services/passport';
 import { authRoutes } from './routes/auth-routes';
+
+
+mongoose.Promise = global.Promise;
+mongoose.connect(keys.mongo, { useNewUrlParser: true });
+
+const app = express();
 
 app.use([
   compression(),
@@ -34,19 +33,19 @@ app.use([
   helmet(),
   passport.initialize(),
   passport.session()
-])
+]);
 
-app.use('/auth', authRoutes())
+app.use('/auth', authRoutes());
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(resolve(__dirname, '../client/build')))
-  app.get('*', (req, res) => {
-    res.sendFile(resolve(__dirname, '..', 'client/build/index.html'))
-  })
+  app.use(express.static(resolve(__dirname, '../client/build')));
+  app.get('*', (req, res): void => {
+    res.sendFile(resolve(__dirname, '..', 'client/build/index.html'));
+  });
 } else {
-  app.get('/', (req, res) => {
-    res.status(404).send('base route only available in production')
-  })
+  app.get('/', (req, res): void => {
+    res.status(404).send('base route only available in production');
+  });
 }
 
-export { app, mongoose }
+export { app, mongoose };
