@@ -1,4 +1,4 @@
-import { Actions, User, ActionTypes } from '../actions';
+import { Actions, User, ActionTypes, AccountBook } from '../actions';
 
 export function userReducer(
   state: User = { error: false },
@@ -6,8 +6,23 @@ export function userReducer(
 ): User {
   switch (action.type) {
     case ActionTypes.fetchUser: {
-      console.log(action.payload);
       return action.payload;
+    }
+
+    case ActionTypes.createAccountBook: {
+      if (state.accountBooks) {
+        const accountBooks: AccountBook[] = state.accountBooks.concat(
+          action.payload
+        );
+
+        return { ...state, accountBooks };
+      }
+
+      return { ...state, accountBooks: [action.payload] };
+    }
+
+    case ActionTypes.createAccountBookFail: {
+      return { ...state, error: { message: action.payload } };
     }
 
     case ActionTypes.fetchUserFail: {

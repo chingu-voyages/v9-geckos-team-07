@@ -38,7 +38,7 @@ export class NewAccountBook extends Component<NewAccountBookProps> {
 
     const success = await this.props.newAccountBook({ title, description });
     if (Boolean(success)) {
-      return this.props.history.push('/');
+      return this.props.history.push('/account-books');
     }
   };
 

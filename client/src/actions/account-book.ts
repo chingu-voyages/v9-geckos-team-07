@@ -7,9 +7,15 @@ import {
   ActionTypes,
   User,
   AccountBookWithTemplate,
-  DeleteAccountBookAction
+  DeleteAccountBookAction,
+  CreateAccountBookFail
 } from './types';
 import { StoreState } from '../reducers';
+
+interface SaveResponse {
+  accountBook: AccountBook | false;
+  error?: { message: string };
+}
 
 /**
  * This is honestly confusing as hell to look at
@@ -17,17 +23,34 @@ import { StoreState } from '../reducers';
  */
 export function newAccountBook(
   accountBook: AccountBook | AccountBookWithTemplate
-): ThunkAction<Promise<boolean>, StoreState, {}, CreateAccountBook> {
+): ThunkAction<
+  Promise<boolean>,
+  StoreState,
+  {},
+  CreateAccountBook | CreateAccountBookFail
+> {
   return async (dispatch): Promise<boolean> => {
-    const response = await axios.post<User>('/api/account-books', accountBook);
+    const response = await axios.post<SaveResponse>(
+      '/api/account-books',
+      accountBook
+    );
 
     if (response.status === 200) {
-      dispatch({
-        type: ActionTypes.createAccountBook,
-        payload: accountBook
-      });
+      if (response.data.accountBook !== false) {
+        dispatch({
+          type: ActionTypes.createAccountBook,
+          payload: response.data.accountBook
+        });
 
-      return true;
+        return true;
+      } else if (response.data.error) {
+        dispatch({
+          type: ActionTypes.createAccountBookFail,
+          payload: 'Unable to create Account Book Entry'
+        });
+
+        return false;
+      }
     }
 
     return false;
