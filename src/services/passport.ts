@@ -57,12 +57,13 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done): Promise<void> => {
       const { id, emails, displayName, photos } = profile;
+      console.log(photos);
 
       const googleUser = {
         googleId: id,
         emails,
         name: displayName,
-        photos: photos ? photos[0].value : ''
+        photo: photos ? photos[0].value : ''
       };
 
       const existingUser = await User.findOne({ googleId: id });

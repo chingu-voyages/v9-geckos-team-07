@@ -15,7 +15,7 @@ export interface UserModel extends Document {
 }
 
 export const userSchema = new Schema({
-  googleID: String,
+  googleId: String,
   name: String,
   photo: String,
   emails: [emailSchema],
