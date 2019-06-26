@@ -3,10 +3,11 @@ import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { StoreState } from '../../reducers';
-import { User } from '../../actions';
+import { User, deleteAccountBook } from '../../actions';
 
 interface AccountBooksProps {
   user: User;
+  deleteAccountBook: (id: string) => void;
 }
 
 export class AccountBooks extends Component<AccountBooksProps> {
@@ -17,7 +18,13 @@ export class AccountBooks extends Component<AccountBooksProps> {
       return user.accountBooks.map(
         (book): JSX.Element => (
           <li key={book._id}>
-            <Link to={`/account-books/${book._id}`}>{book.title}</Link>
+            <Link to={`/account-books/${book._id}`}>{`${book.title} `}</Link>
+            <button
+              type="button"
+              onClick={() => this.onDeleteClick(book.title)}
+            >
+              Delete
+            </button>
           </li>
         )
       );
@@ -25,6 +32,10 @@ export class AccountBooks extends Component<AccountBooksProps> {
 
     return [];
   }
+
+  private onDeleteClick = (title: string): void => {
+    this.props.deleteAccountBook(title);
+  };
 
   public render(): JSX.Element {
     const {
@@ -41,7 +52,7 @@ export class AccountBooks extends Component<AccountBooksProps> {
           <h2>Account Books</h2>
         </header>
 
-        <button type="button">Create new Account Book</button>
+        <Link to="/account-books/new">Create new Account Book</Link>
 
         <nav>
           <header>
@@ -59,4 +70,7 @@ function mapStateToProps({ user }: StoreState): { user: User } {
   return { user };
 }
 
-export const ConnectedAccountBooks = connect(mapStateToProps)(AccountBooks);
+export const ConnectedAccountBooks = connect(
+  mapStateToProps,
+  { deleteAccountBook }
+)(AccountBooks);

@@ -6,11 +6,16 @@ export function userReducer(
 ): User {
   switch (action.type) {
     case ActionTypes.fetchUser: {
+      console.log(action.payload);
       return action.payload;
     }
 
     case ActionTypes.fetchUserFail: {
       return { error: action.payload };
+    }
+
+    case ActionTypes.deleteAccountBook: {
+      return action.payload;
     }
 
     default: {

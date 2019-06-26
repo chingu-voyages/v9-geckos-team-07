@@ -1,7 +1,8 @@
 export enum ActionTypes {
   fetchUser = 'FETCH_USER',
   fetchUserFail = 'FETCH_USER_FAIL',
-  createAccountBook = 'CREATE_ACCOUNT_BOOK'
+  createAccountBook = 'CREATE_ACCOUNT_BOOK',
+  deleteAccountBook = 'DELETE_ACCOUNT_BOOK'
 }
 
 export interface Email {
@@ -20,6 +21,7 @@ export interface AccountBook {
 
 export enum AccountType {
   Assets = 'assets',
+  Equity = 'equity',
   Income = 'income',
   Expense = 'expense',
   Liability = 'liability'
@@ -57,9 +59,26 @@ export interface FetchUserFail {
   payload: FetchFail;
 }
 
-export interface CreateAccountBook {
-  type: ActionTypes.createAccountBook;
-  payload: AccountBook;
+export enum Template {
+  Checking = 'checking'
 }
 
-export type Actions = FetchUser | FetchUserFail;
+export interface AccountBookWithTemplate extends AccountBook {
+  template: Template.Checking;
+}
+
+export interface CreateAccountBook {
+  type: ActionTypes.createAccountBook;
+  payload: AccountBook | AccountBookWithTemplate;
+}
+
+export interface DeleteAccountBookAction {
+  type: ActionTypes.deleteAccountBook;
+  payload: User;
+}
+
+export type Actions =
+  | FetchUser
+  | FetchUserFail
+  | DeleteAccountBookAction
+  | CreateAccountBook;

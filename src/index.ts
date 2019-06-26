@@ -15,9 +15,10 @@ import './models/transactions';
 import './services/passport';
 import { authRoutes } from './routes/auth-routes';
 import { apiRoutes } from './routes/api-routes';
+import { requireAuth } from './middleware/require-auth';
 
 mongoose.Promise = global.Promise;
-mongoose.connect(keys.mongo, { useNewUrlParser: true });
+mongoose.connect(keys.mongo, { useNewUrlParser: true, useCreateIndex: true });
 
 const app = express();
 
@@ -36,7 +37,7 @@ app.use([
 ]);
 
 app.use('/auth', authRoutes());
-app.use('/api', apiRoutes());
+app.use('/api', requireAuth(), apiRoutes());
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(resolve(__dirname, '../client/build')));

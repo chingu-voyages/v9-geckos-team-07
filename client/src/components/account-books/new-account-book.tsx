@@ -1,18 +1,45 @@
 import React, { Component, ChangeEvent, FormEvent } from 'react';
 import { connect } from 'react-redux';
-import { newAccountBook, AccountBook } from '../../actions';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
+import {
+  newAccountBook,
+  AccountBook,
+  AccountBookWithTemplate,
+  Template
+} from '../../actions';
 
-interface NewAccountBookProps {
-  newAccountBook: (accountBook: AccountBook) => void;
+interface NewAccountBookProps extends RouteComponentProps {
+  newAccountBook: (accountBook: AccountBook | AccountBookWithTemplate) => void;
 }
 
 export class NewAccountBook extends Component<NewAccountBookProps> {
-  public state = { title: '', description: '' };
+  public state = { title: '', description: '', template: '' };
 
-  private onSubmit = (event: FormEvent<HTMLFormElement>): void => {
+  private onSubmit = async (
+    event: FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     event.preventDefault();
 
-    this.props.newAccountBook(this.state);
+    const { title, description, template } = this.state;
+
+    if (template === Template.Checking) {
+      const success = await this.props.newAccountBook({
+        title,
+        description,
+        template: Template.Checking
+      });
+
+      console.log(success);
+
+      if (Boolean(success)) {
+        return this.props.history.push('/account-books');
+      }
+    }
+
+    const success = await this.props.newAccountBook({ title, description });
+    if (Boolean(success)) {
+      return this.props.history.push('/');
+    }
   };
 
   private onUpdateTitle = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -23,6 +50,12 @@ export class NewAccountBook extends Component<NewAccountBookProps> {
     event: ChangeEvent<HTMLTextAreaElement>
   ): void => {
     this.setState({ description: event.target.value });
+  };
+
+  private onUpdateTemplate = (event: ChangeEvent<HTMLSelectElement>) => {
+    const { value: template } = event.target;
+
+    this.setState({ template });
   };
 
   public render(): JSX.Element {
@@ -49,6 +82,14 @@ export class NewAccountBook extends Component<NewAccountBookProps> {
           />
         </label>
 
+        <label>
+          <div>template:</div>
+          <select onChange={this.onUpdateTemplate}>
+            <option value="custom">Custom: (no accounts)</option>
+            <option value="checking">Checking Book Template</option>
+          </select>
+        </label>
+
         <button type="submit">Create New Account Book</button>
       </form>
     );
@@ -58,4 +99,4 @@ export class NewAccountBook extends Component<NewAccountBookProps> {
 export const ConnectedNewAccountBook = connect(
   null,
   { newAccountBook }
-)(NewAccountBook);
+)(withRouter(NewAccountBook));

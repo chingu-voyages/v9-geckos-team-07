@@ -1,7 +1,14 @@
-import { ThunkDispatch, ThunkAction } from 'redux-thunk';
-import axios, { AxiosResponse } from 'axios';
+import { ThunkAction } from 'redux-thunk';
+import axios from 'axios';
 
-import { AccountBook, CreateAccountBook, ActionTypes, User } from './types';
+import {
+  AccountBook,
+  CreateAccountBook,
+  ActionTypes,
+  User,
+  AccountBookWithTemplate,
+  DeleteAccountBookAction
+} from './types';
 import { StoreState } from '../reducers';
 
 /**
@@ -9,13 +16,35 @@ import { StoreState } from '../reducers';
  * @param accountBook Account Book
  */
 export function newAccountBook(
-  accountBook: AccountBook
-): ThunkAction<Promise<void>, StoreState, {}, CreateAccountBook> {
-  return async (
-    dispatch: ThunkDispatch<StoreState, {}, CreateAccountBook>
-  ): Promise<void> => {
-    await axios.post<User>('/api/account-books', accountBook);
+  accountBook: AccountBook | AccountBookWithTemplate
+): ThunkAction<Promise<boolean>, StoreState, {}, CreateAccountBook> {
+  return async (dispatch): Promise<boolean> => {
+    const response = await axios.post<User>('/api/account-books', accountBook);
 
-    dispatch({ type: ActionTypes.createAccountBook, payload: accountBook });
+    if (response.status === 200) {
+      dispatch({
+        type: ActionTypes.createAccountBook,
+        payload: accountBook
+      });
+
+      return true;
+    }
+
+    return false;
+  };
+}
+
+export function deleteAccountBook(
+  title: string
+): ThunkAction<Promise<void>, StoreState, {}, DeleteAccountBookAction> {
+  return async (dispatch): Promise<void> => {
+    const response = await axios.delete<User>(`/api/account-books/${title}`);
+
+    if (response.status === 200) {
+      dispatch({
+        type: ActionTypes.deleteAccountBook,
+        payload: response.data
+      });
+    }
   };
 }

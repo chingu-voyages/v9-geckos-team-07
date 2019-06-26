@@ -1,20 +1,22 @@
 import { Schema, Document } from 'mongoose';
 
+import { accountSchema, Account } from './account';
+
 export interface AccountBook extends Document {
   _id: string;
   title: string;
   description: string;
   created: Date;
   updated: Date;
-  accounts: [];
+  accounts: Account[];
 }
 
-const accountBookSchema: Schema<AccountBook> = new Schema({
+const accountBookSchema = new Schema<AccountBook>({
   title: String,
   description: String,
   created: { type: Date, default: Date.now },
   updated: { type: Date, default: Date.now },
-  accounts: []
+  accounts: [accountSchema]
 });
 
 accountBookSchema.pre('update', function preUpdate(next): void {
