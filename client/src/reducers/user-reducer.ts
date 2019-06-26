@@ -22,7 +22,7 @@ export function userReducer(
     }
 
     case ActionTypes.createAccountBookFail: {
-      return { ...state, error: { message: action.payload } };
+      return { ...state, error: action.payload };
     }
 
     case ActionTypes.fetchUserFail: {

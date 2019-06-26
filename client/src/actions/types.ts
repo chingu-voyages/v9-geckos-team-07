@@ -43,7 +43,7 @@ export interface User {
   photo?: string;
   emails?: Email[];
   accountBooks?: AccountBook[];
-  error: false | FetchFail;
+  error: false | string;
 }
 
 export interface FetchUser {
@@ -51,13 +51,9 @@ export interface FetchUser {
   payload: User;
 }
 
-interface FetchFail {
-  message: string;
-}
-
 export interface FetchUserFail {
   type: ActionTypes.fetchUserFail;
-  payload: FetchFail;
+  payload: string;
 }
 
 export enum Template {

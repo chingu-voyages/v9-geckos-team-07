@@ -22,7 +22,7 @@ export function fetchUser(): ThunkAction<
     } catch (error) {
       dispatch<FetchUserFail>({
         type: ActionTypes.fetchUserFail,
-        payload: { message: 'Something went wrong' }
+        payload: 'Something went wrong'
       });
     }
   };
