@@ -84,7 +84,7 @@ export class NewAccountBook extends Component<NewAccountBookProps> {
 
         <label>
           <div>template:</div>
-          <select onChange={this.onUpdateTemplate}>
+          <select onChange={this.onUpdateTemplate} defaultValue="checking">
             <option value="custom">Custom: (no accounts)</option>
             <option value="checking">Checking Book Template</option>
           </select>
