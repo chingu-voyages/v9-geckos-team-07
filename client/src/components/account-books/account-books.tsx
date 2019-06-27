@@ -7,10 +7,15 @@ import { deleteAccountBook, CompleteUser } from '../../actions';
 
 interface AccountBooksProps {
   user: CompleteUser;
-  deleteAccountBook: (id: string) => void;
 }
 
-export class AccountBooks extends Component<AccountBooksProps> {
+interface DispatchProps {
+  deleteAccountBook: (id: string) => void; // is there a better way to write this?
+}
+
+type Props = AccountBooksProps & DispatchProps;
+
+export class AccountBooks extends Component<Props> {
   private renderBooks(): JSX.Element[] {
     const { user } = this.props;
 
@@ -59,11 +64,16 @@ export class AccountBooks extends Component<AccountBooksProps> {
   }
 }
 
-function mapStateToProps({ user }: StoreState) {
+function mapStateToProps({ user }: StoreState): AccountBooksProps {
   return { user };
 }
 
-export const ConnectedAccountBooks = connect(
+export const ConnectedAccountBooks = connect<
+  { user: CompleteUser }, // Props we are pulling off
+  DispatchProps, // Dispatch really doesn't like ThunkDispatch
+  AccountBooksProps, // Other props passed to component
+  StoreState // store state
+>(
   mapStateToProps,
   { deleteAccountBook }
 )(AccountBooks);

@@ -34,7 +34,7 @@ export class App extends Component<AppProps> {
   }
 }
 
-export const ConnectedApp = connect(
+export const ConnectedApp = connect<{}, AppProps>(
   null,
   { fetchUser }
 )(App);

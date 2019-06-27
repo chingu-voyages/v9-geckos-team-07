@@ -8,11 +8,11 @@ import { CompleteUser } from '../actions';
 import './site-nav.css';
 
 interface SiteNavProps {
-  user: CompleteUser;
+  user?: CompleteUser;
 }
 
 export const _SiteNav = ({ user }: SiteNavProps): JSX.Element => {
-  if (user.googleId) {
+  if (user && user.googleId) {
     return (
       <nav id="site-nav">
         <ul className="list">
@@ -38,8 +38,13 @@ export const _SiteNav = ({ user }: SiteNavProps): JSX.Element => {
   );
 };
 
-const mapStateToProps = (state: StoreState) => {
-  return { user: state.user };
+const mapStateToProps = ({ user }: StoreState): { user: CompleteUser } => {
+  return { user };
 };
 
-export const SiteNav = connect(mapStateToProps)(_SiteNav);
+export const SiteNav = connect<
+  { user: CompleteUser },
+  {},
+  SiteNavProps,
+  StoreState
+>(mapStateToProps)(_SiteNav);

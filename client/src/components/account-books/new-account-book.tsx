@@ -7,6 +7,7 @@ import {
   AccountBookWithTemplate,
   Template
 } from '../../actions';
+import { StoreState } from '../../reducers';
 
 interface NewAccountBookProps extends RouteComponentProps {
   newAccountBook: (accountBook: AccountBook | AccountBookWithTemplate) => void;
@@ -101,7 +102,16 @@ export class NewAccountBook extends Component<NewAccountBookProps> {
   }
 }
 
-export const ConnectedNewAccountBook = connect(
+export const ConnectedNewAccountBook = connect<
+  {},
+  {
+    newAccountBook: (
+      accountBook: AccountBook | AccountBookWithTemplate
+    ) => void;
+  },
+  NewAccountBookProps,
+  StoreState
+>(
   null,
   { newAccountBook }
 )(withRouter(NewAccountBook));
