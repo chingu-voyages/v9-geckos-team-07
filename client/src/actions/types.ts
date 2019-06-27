@@ -12,12 +12,16 @@ export interface Email {
 }
 
 export interface AccountBook {
-  _id?: string;
   title: string;
   description: string;
-  created?: Date;
-  updated?: Date;
-  accounts?: Account[];
+  accounts: Account[];
+}
+
+export interface CompleteAccountBook extends AccountBook {
+  _id: string;
+  created: Date;
+  updated: Date;
+  accounts: CompleteAccount[];
 }
 
 export enum AccountType {
@@ -36,19 +40,27 @@ export interface Account {
   parent: Account['name'] | null;
 }
 
+export interface CompleteAccount extends Account {
+  _id: string;
+}
+
 export interface User {
-  _id?: string;
-  name?: string;
-  googleId?: string;
-  photo?: string;
-  emails?: Email[];
-  accountBooks?: AccountBook[];
+  name: string;
+  googleId: string;
+  photo: string;
+  emails: Email[];
+  accountBooks: AccountBook[];
   error: false | string;
+}
+
+export interface CompleteUser extends User {
+  _id: string;
+  accountBooks: CompleteAccountBook[];
 }
 
 export interface FetchUser {
   type: ActionTypes.fetchUser;
-  payload: User;
+  payload: CompleteUser;
 }
 
 export interface FetchUserFail {
@@ -66,7 +78,7 @@ export interface AccountBookWithTemplate extends AccountBook {
 
 export interface CreateAccountBook {
   type: ActionTypes.createAccountBook;
-  payload: AccountBook;
+  payload: CompleteAccountBook;
 }
 
 export interface CreateAccountBookFail {
@@ -76,7 +88,7 @@ export interface CreateAccountBookFail {
 
 export interface DeleteAccountBookAction {
   type: ActionTypes.deleteAccountBook;
-  payload: User;
+  payload: CompleteAccountBook[];
 }
 
 export type Actions =

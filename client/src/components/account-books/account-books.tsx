@@ -3,10 +3,10 @@ import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { StoreState } from '../../reducers';
-import { User, deleteAccountBook } from '../../actions';
+import { deleteAccountBook, CompleteUser } from '../../actions';
 
 interface AccountBooksProps {
-  user: User;
+  user: CompleteUser;
   deleteAccountBook: (id: string) => void;
 }
 
@@ -14,27 +14,20 @@ export class AccountBooks extends Component<AccountBooksProps> {
   private renderBooks(): JSX.Element[] {
     const { user } = this.props;
 
-    if (user.accountBooks) {
-      return user.accountBooks.map(
-        (book): JSX.Element => (
-          <li key={book._id}>
-            <Link to={`/account-books/${book._id}`}>{`${book.title} `}</Link>
-            <button
-              type="button"
-              onClick={() => this.onDeleteClick(book.title)}
-            >
-              Delete
-            </button>
-          </li>
-        )
-      );
-    }
-
-    return [];
+    return user.accountBooks.map(
+      (book): JSX.Element => (
+        <li key={book._id}>
+          <Link to={`/account-books/${book._id}`}>{`${book.title} `}</Link>
+          <button type="button" onClick={() => this.onDeleteClick(book._id)}>
+            Delete
+          </button>
+        </li>
+      )
+    );
   }
 
-  private onDeleteClick = (title: string): void => {
-    this.props.deleteAccountBook(title);
+  private onDeleteClick = (id: string): void => {
+    this.props.deleteAccountBook(id);
   };
 
   public render(): JSX.Element {
@@ -42,7 +35,7 @@ export class AccountBooks extends Component<AccountBooksProps> {
       user: { accountBooks }
     } = this.props;
 
-    if (accountBooks && accountBooks.length === 0) {
+    if (accountBooks.length === 0) {
       return <Redirect to="/account-books/new" />;
     }
 
@@ -66,7 +59,7 @@ export class AccountBooks extends Component<AccountBooksProps> {
   }
 }
 
-function mapStateToProps({ user }: StoreState): { user: User } {
+function mapStateToProps({ user }: StoreState) {
   return { user };
 }
 

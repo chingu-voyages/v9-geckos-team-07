@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { StoreState } from '../reducers';
-import { User } from '../actions';
+import { CompleteUser } from '../actions';
 
 import './site-nav.css';
 
 interface SiteNavProps {
-  user: User;
+  user: CompleteUser;
 }
 
 export const _SiteNav = ({ user }: SiteNavProps): JSX.Element => {
@@ -38,7 +38,7 @@ export const _SiteNav = ({ user }: SiteNavProps): JSX.Element => {
   );
 };
 
-const mapStateToProps = (state: StoreState): { user: User } => {
+const mapStateToProps = (state: StoreState) => {
   return { user: state.user };
 };
 

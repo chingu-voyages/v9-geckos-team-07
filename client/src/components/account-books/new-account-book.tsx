@@ -26,6 +26,7 @@ export class NewAccountBook extends Component<NewAccountBookProps> {
       const success = await this.props.newAccountBook({
         title,
         description,
+        accounts: [],
         template: Template.Checking
       });
 
@@ -36,7 +37,11 @@ export class NewAccountBook extends Component<NewAccountBookProps> {
       }
     }
 
-    const success = await this.props.newAccountBook({ title, description });
+    const success = await this.props.newAccountBook({
+      title,
+      description,
+      accounts: []
+    });
     if (Boolean(success)) {
       return this.props.history.push('/account-books');
     }

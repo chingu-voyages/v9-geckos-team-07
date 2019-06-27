@@ -1,21 +1,30 @@
-import { Actions, User, ActionTypes, AccountBook } from '../actions';
+import { Actions, ActionTypes, CompleteUser } from '../actions';
+
+const initialState: CompleteUser = {
+  _id: '',
+  name: '',
+  googleId: '',
+  photo: '',
+  accountBooks: [],
+  emails: [],
+  error: false
+};
 
 export function userReducer(
-  state: User = { error: false },
+  state: CompleteUser = initialState,
   action: Actions
-): User {
+): CompleteUser {
   switch (action.type) {
     case ActionTypes.fetchUser: {
       return action.payload;
     }
 
     case ActionTypes.createAccountBook: {
-      if (state.accountBooks) {
-        const accountBooks: AccountBook[] = state.accountBooks.concat(
-          action.payload
-        );
-
-        return { ...state, accountBooks };
+      if (state.accountBooks.length > 0) {
+        return {
+          ...state,
+          accountBooks: state.accountBooks.concat(action.payload)
+        };
       }
 
       return { ...state, accountBooks: [action.payload] };
@@ -26,11 +35,11 @@ export function userReducer(
     }
 
     case ActionTypes.fetchUserFail: {
-      return { error: action.payload };
+      return { ...state, error: action.payload };
     }
 
     case ActionTypes.deleteAccountBook: {
-      return action.payload;
+      return { ...state, accountBooks: action.payload };
     }
 
     default: {

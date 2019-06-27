@@ -3,9 +3,9 @@ import axios from 'axios';
 
 import {
   AccountBook,
+  CompleteAccountBook,
   CreateAccountBook,
   ActionTypes,
-  User,
   AccountBookWithTemplate,
   DeleteAccountBookAction,
   CreateAccountBookFail
@@ -13,7 +13,7 @@ import {
 import { StoreState } from '../reducers';
 
 interface SaveResponse {
-  accountBook: AccountBook | false;
+  accountBook: CompleteAccountBook | false;
   error?: { message: string };
 }
 
@@ -58,10 +58,12 @@ export function newAccountBook(
 }
 
 export function deleteAccountBook(
-  title: string
+  id: string
 ): ThunkAction<Promise<void>, StoreState, {}, DeleteAccountBookAction> {
   return async (dispatch): Promise<void> => {
-    const response = await axios.delete<User>(`/api/account-books/${title}`);
+    const response = await axios.delete<CompleteAccountBook[]>(
+      `/api/account-books/${id}`
+    );
 
     if (response.status === 200) {
       dispatch({

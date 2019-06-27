@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { ThunkAction, ThunkDispatch } from 'redux-thunk';
-import { User, FetchUser, ActionTypes, FetchUserFail } from './types';
+import { CompleteUser, FetchUser, ActionTypes, FetchUserFail } from './types';
 import { StoreState } from '../reducers';
 
 export function fetchUser(): ThunkAction<
@@ -13,7 +13,7 @@ export function fetchUser(): ThunkAction<
     dispatch: ThunkDispatch<StoreState, {}, FetchUser | FetchUserFail>
   ): Promise<void> => {
     try {
-      const response = await axios.get<User>('/auth/current_user');
+      const response = await axios.get<CompleteUser>('/auth/current_user');
 
       dispatch<FetchUser>({
         type: ActionTypes.fetchUser,
