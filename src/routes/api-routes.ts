@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import '../models/user';
 
 import { UserModel } from '../models/user/user';
-import { AccountBook } from '../models/user/accountBook';
+import { AccountBook, accountBookSchema } from '../models/user/accountBook';
 import { Account, accountSchema, AccountType } from '../models/user/account';
 
 function checkingBookTemplate(): Account[] {
@@ -101,21 +101,19 @@ export function apiRoutes(): Router {
   );
 
   router.delete(
-    '/account-books/:title',
+    '/account-books/:id',
     async (req: Request, res: Response): Promise<Response> => {
-      const title: string = req.params.title;
-
       const User = mongoose.model<UserModel>('users');
+      const id: string = req.params.id;
 
       const user = await User.findById(req.user._id);
 
       if (user) {
-        user.accountBooks = user.accountBooks.filter(
-          book => book.title !== title
-        );
+        user.accountBooks = user.accountBooks.filter(book => book.id !== id);
 
         const updatedUser = await user.save();
-        return res.send(updatedUser);
+
+        return res.send(updatedUser.accountBooks);
       }
 
       return res.send('okay');
