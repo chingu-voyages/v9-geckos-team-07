@@ -3,7 +3,7 @@ import { Schema, Document } from 'mongoose';
 import { accountSchema, Account } from './account';
 
 export interface AccountBook extends Document {
-  _id: string;
+  id: string;
   title: string;
   description: string;
   created: Date;

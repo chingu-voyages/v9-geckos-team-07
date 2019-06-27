@@ -9,7 +9,7 @@ export enum AccountType {
 }
 
 export interface Account extends Document {
-  _id: string;
+  id: string;
   name: string;
   type: AccountType;
   description: string;
