@@ -21,7 +21,7 @@ export class AccountBooks extends Component<Props> {
 
     return user.accountBooks.map(
       (book): JSX.Element => (
-        <li key={book._id}>
+        <li key={book.title}>
           <Link to={`/account-books/${book.title}`}>{`${book.title} `}</Link>
           <button type="button" onClick={() => this.onDeleteClick(book._id)}>
             Delete
