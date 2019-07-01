@@ -8,10 +8,7 @@ import { AccountBook, accountBookSchema } from '../models/user/accountBook';
 import { Account, accountSchema, AccountType } from '../models/user/account';
 
 function checkingBookTemplate(): Account[] {
-  const Account: mongoose.Model<Account> = mongoose.model<Account>(
-    'accounts',
-    accountSchema
-  );
+  const Account = mongoose.model<Account>('accounts', accountSchema);
   const { Asset, Equity, Expense } = AccountType;
 
   const assetAccount: Account = new Account({
@@ -19,15 +16,15 @@ function checkingBookTemplate(): Account[] {
     type: Asset,
     descripton: '',
     placeholder: true,
-    subAccounts: [
-      new Account({
-        name: 'Checking',
-        type: Asset,
-        descripton: 'Checking Account',
-        placeholder: false,
-        subAccount: []
-      })
-    ]
+    parent: null
+  });
+
+  const bankAccount: Account = new Account({
+    name: 'Checking',
+    type: Asset,
+    descripton: 'Checking Account',
+    placeholder: false,
+    parent: assetAccount._id
   });
 
   const equityAccount: Account = new Account({
@@ -35,14 +32,15 @@ function checkingBookTemplate(): Account[] {
     type: Equity,
     descripton: '',
     placeholder: true,
-    subAccounts: [
-      new Account({
-        name: 'Opening Balances',
-        type: Equity,
-        descripton: 'opening balance',
-        placeholder: false
-      })
-    ]
+    parent: null
+  });
+
+  const openingBalances: Account = new Account({
+    name: 'Opening Balances',
+    type: Equity,
+    descripton: 'opening balance',
+    placeholder: false,
+    parent: equityAccount._id
   });
 
   const expenses: Account = new Account({
@@ -53,7 +51,7 @@ function checkingBookTemplate(): Account[] {
     parent: null
   });
 
-  return [assetAccount, equityAccount, expenses];
+  return [assetAccount, bankAccount, equityAccount, openingBalances, expenses];
 }
 
 export function apiRoutes(): Router {

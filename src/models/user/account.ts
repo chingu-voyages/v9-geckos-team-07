@@ -1,4 +1,4 @@
-import { Schema, Document, Model } from 'mongoose';
+import { Schema, Document } from 'mongoose';
 
 export enum AccountType {
   Asset = 'asset',
@@ -14,7 +14,7 @@ export interface Account extends Document {
   type: AccountType;
   description: string;
   placeholder: boolean;
-  subAccounts: Account;
+  parent: Account['_id'] | null;
 }
 
 export const accountSchema = new Schema<Account>({
@@ -22,5 +22,5 @@ export const accountSchema = new Schema<Account>({
   type: String,
   description: String,
   placeholder: Boolean,
-  subAccounts: { type: this }
+  parent: { type: Schema.Types.ObjectId, ref: 'accounts' }
 });
