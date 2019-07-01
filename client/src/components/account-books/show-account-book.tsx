@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-
 import { StoreState } from '../../reducers';
 import { CompleteAccount } from '../../actions';
 import { StateStore } from 'passport-oauth2';
@@ -18,48 +16,11 @@ export class ShowAccountBook extends Component<Props> {
     return null;
   };
 
-  private displayAccountLinks(accounts: CompleteAccount[]): JSX.Element[] {
-    return accounts.map(
-      (account: CompleteAccount): JSX.Element => {
-        if (account.subAccounts && account.subAccounts.length) {
-          return (
-            <li key={account._id}>
-              {account.name}
-              <ul>{this.displayAccountLinks(account.subAccounts)}</ul>
-            </li>
-          );
-        }
-        return (
-          <li key={account._id}>
-            {account.subAccounts && account.subAccounts.length
-              ? this.displayLink(account)
-              : account.name}
-          </li>
-        );
-      }
-    );
-  }
-
-  private displayLink(account: CompleteAccount): JSX.Element {
-    console.log('got called');
-    return (
-      <Link
-        to={`/account-books/${this.props.match.params.title}/register/${
-          account.name
-        }`}
-      >
-        {account.name}
-      </Link>
-    );
-  }
-
   public render(): JSX.Element {
-    const {
-      accounts,
-      match: {
-        params: { title }
-      }
-    } = this.props;
+    const { title } = this.props.match.params;
+    const accounts: JSX.Element[] = this.props.accounts.map(
+      (account): JSX.Element => <div key={account._id}>{account.name}</div>
+    );
 
     return (
       <>
@@ -67,7 +28,7 @@ export class ShowAccountBook extends Component<Props> {
           <h2>{title}</h2>
         </header>
 
-        <ul>{this.displayAccountLinks(accounts)}</ul>
+        {accounts}
       </>
     );
   }
