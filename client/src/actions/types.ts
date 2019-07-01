@@ -38,12 +38,10 @@ export interface Account {
   description: string;
   placeholder: boolean;
   parent: Account['name'] | null;
-  subAccounts?: Account[];
 }
 
 export interface CompleteAccount extends Account {
   _id: string;
-  subAccounts: CompleteAccount[];
 }
 
 export interface User {
