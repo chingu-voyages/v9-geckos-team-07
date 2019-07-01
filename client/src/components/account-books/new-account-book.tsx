@@ -14,7 +14,7 @@ interface NewAccountBookProps extends RouteComponentProps {
 }
 
 export class NewAccountBook extends Component<NewAccountBookProps> {
-  public state = { title: '', description: '', template: '' };
+  public state = { title: '', description: '', template: 'checking' };
 
   private onSubmit = async (
     event: FormEvent<HTMLFormElement>
@@ -30,8 +30,6 @@ export class NewAccountBook extends Component<NewAccountBookProps> {
         accounts: [],
         template: Template.Checking
       });
-
-      console.log(success);
 
       if (Boolean(success)) {
         return this.props.history.push('/account-books');
@@ -90,7 +88,10 @@ export class NewAccountBook extends Component<NewAccountBookProps> {
 
         <label>
           <div>template:</div>
-          <select onChange={this.onUpdateTemplate} defaultValue="checking">
+          <select
+            onChange={this.onUpdateTemplate}
+            defaultValue={this.state.template}
+          >
             <option value="custom">Custom: (no accounts)</option>
             <option value="checking">Checking Book Template</option>
           </select>
