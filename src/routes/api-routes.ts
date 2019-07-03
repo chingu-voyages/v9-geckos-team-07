@@ -61,39 +61,43 @@ export function apiRoutes(): Router {
     '/account-books',
     async (req: Request, res: Response): Promise<Response> => {
       const User = mongoose.model<UserModel>('users');
-
+      const AccountBook = mongoose.model<AccountBook>(
+        'accountbooks',
+        accountBookSchema
+      );
       const template: string = req.body.template;
-
       const accountBook: AccountBook = req.body;
-
       const user: UserModel = req.user;
-
       const updateUser: UserModel = new User(user);
-
-      if (template === 'checking') {
-        const accounts: Account[] = checkingBookTemplate();
-
-        accountBook.accounts = accounts;
-      }
+      let book: AccountBook;
 
       if (updateUser.accountBooks) {
-        const findBook = updateUser.accountBooks.filter(
+        const findBook = updateUser.accountBooks.find(
           book => book.title === accountBook.title
         );
 
-        if (findBook.length) {
-          return res.json({ error: 'This Book already exists' });
+        if (findBook) {
+          return res.status(200).json({ error: 'This Book already exists' });
         }
 
-        updateUser.accountBooks.push(accountBook);
+        book = new AccountBook(accountBook);
+
+        if (template === 'checking') {
+          const accounts: Account[] = checkingBookTemplate();
+
+          book.accounts = accounts;
+        }
+
+        updateUser.accountBooks.push(book);
       } else {
-        updateUser.accountBooks = [accountBook];
+        book = new AccountBook(accountBook);
+        updateUser.accountBooks = [book];
       }
 
       try {
         await User.updateOne({ _id: user._id }, updateUser);
 
-        return res.status(201).send({ accountBook });
+        return res.status(201).send({ accountBook: book });
       } catch (error) {
         return res.status(500).send({ save: false, error });
       }
