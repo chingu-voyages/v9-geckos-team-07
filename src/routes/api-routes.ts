@@ -93,7 +93,7 @@ export function apiRoutes(): Router {
       try {
         await User.updateOne({ _id: user._id }, updateUser);
 
-        return res.send({ accountBook });
+        return res.status(201).send({ accountBook });
       } catch (error) {
         return res.status(500).send({ save: false, error });
       }
