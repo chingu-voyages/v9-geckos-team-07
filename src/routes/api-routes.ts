@@ -115,9 +115,11 @@ export function apiRoutes(): Router {
       if (user) {
         user.accountBooks = user.accountBooks.filter(book => book.id !== id);
 
-        const updatedUser = await user.save();
+        const updateUser = await user.save();
 
-        return res.status(200).send(updatedUser.accountBooks);
+        const wasDelted = !updateUser.accountBooks.find(book => book.id === id);
+
+        return res.status(200).send(wasDelted);
       }
 
       return res.status(404).json({ error: 'Account Book was not found' });
