@@ -113,10 +113,10 @@ export function apiRoutes(): Router {
 
         const updatedUser = await user.save();
 
-        return res.send(updatedUser.accountBooks);
+        return res.status(200).send(updatedUser.accountBooks);
       }
 
-      return res.send('okay');
+      return res.status(404).json({ error: 'Account Book was not found' });
     }
   );
 
