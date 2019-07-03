@@ -39,7 +39,11 @@ export function userReducer(
     }
 
     case ActionTypes.deleteAccountBook: {
-      return { ...state, accountBooks: action.payload };
+      const accountBooks = state.accountBooks.filter(
+        book => book._id !== action.payload
+      );
+
+      return { ...state, accountBooks };
     }
 
     default: {

@@ -88,7 +88,7 @@ export interface CreateAccountBookFail {
 
 export interface DeleteAccountBookAction {
   type: ActionTypes.deleteAccountBook;
-  payload: CompleteAccountBook[];
+  payload: string;
 }
 
 export type Actions =

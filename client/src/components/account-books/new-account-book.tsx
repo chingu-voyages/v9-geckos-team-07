@@ -11,6 +11,7 @@ import { StoreState } from '../../reducers';
 
 interface NewAccountBookProps extends RouteComponentProps {
   newAccountBook: (accountBook: AccountBook | AccountBookWithTemplate) => void;
+  error: false | string;
 }
 
 export class NewAccountBook extends Component<NewAccountBookProps> {
@@ -64,11 +65,13 @@ export class NewAccountBook extends Component<NewAccountBookProps> {
 
   public render(): JSX.Element {
     const { title, description } = this.state;
+    const { error } = this.props;
 
     return (
       <form action="post" onSubmit={this.onSubmit}>
         <header>
           <h2>New Account Book</h2>
+          <p>{error ? error : ''}</p>
         </header>
 
         <label>
@@ -103,6 +106,14 @@ export class NewAccountBook extends Component<NewAccountBookProps> {
   }
 }
 
+function mapStateToProps({ user }: StoreState): { error: string | false } {
+  if (user.error) {
+    return { error: user.error };
+  }
+
+  return { error: false };
+}
+
 export const ConnectedNewAccountBook = connect<
   {},
   {
@@ -113,6 +124,6 @@ export const ConnectedNewAccountBook = connect<
   NewAccountBookProps,
   StoreState
 >(
-  null,
+  mapStateToProps,
   { newAccountBook }
 )(withRouter(NewAccountBook));

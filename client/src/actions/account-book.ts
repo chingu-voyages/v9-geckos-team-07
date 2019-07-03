@@ -13,8 +13,8 @@ import {
 import { StoreState } from '../reducers';
 
 interface SaveResponse {
-  accountBook: CompleteAccountBook | false;
-  error?: { message: string };
+  accountBook?: CompleteAccountBook;
+  error?: string;
 }
 
 /**
@@ -30,30 +30,37 @@ export function newAccountBook(
   CreateAccountBook | CreateAccountBookFail
 > {
   return async (dispatch): Promise<boolean> => {
-    const response = await axios.post<SaveResponse>(
-      '/api/account-books',
-      accountBook
-    );
+    try {
+      const response = await axios.post<SaveResponse>(
+        '/api/account-books',
+        accountBook
+      );
 
-    if (response.status === 200) {
-      if (response.data.accountBook !== false) {
+      if (response.status === 201 && response.data.accountBook) {
         dispatch({
           type: ActionTypes.createAccountBook,
           payload: response.data.accountBook
         });
 
         return true;
-      } else if (response.data.error) {
+      } else if (response.status === 200 && response.data.error) {
         dispatch({
           type: ActionTypes.createAccountBookFail,
-          payload: 'Unable to create Account Book Entry'
+          payload: response.data.error
         });
 
         return false;
       }
+    } catch {
+      dispatch({
+        type: ActionTypes.createAccountBookFail,
+        payload: 'Unknown Error'
+      });
+
+      return false;
     }
 
-    return false;
+    return true;
   };
 }
 
@@ -61,14 +68,12 @@ export function deleteAccountBook(
   id: string
 ): ThunkAction<Promise<void>, StoreState, {}, DeleteAccountBookAction> {
   return async (dispatch): Promise<void> => {
-    const response = await axios.delete<CompleteAccountBook[]>(
-      `/api/account-books/${id}`
-    );
+    const response = await axios.delete<boolean>(`/api/account-books/${id}`);
 
-    if (response.status === 200) {
+    if (response.status === 200 && response.data) {
       dispatch({
         type: ActionTypes.deleteAccountBook,
-        payload: response.data
+        payload: id
       });
     }
   };
