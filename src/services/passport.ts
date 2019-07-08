@@ -5,7 +5,6 @@ import mongoose from 'mongoose';
 import { keys } from '../config/keys';
 import { UserModel } from '../models/user/user';
 
-const { Strategy } = passportGoogle;
 const { google } = keys;
 
 const User = mongoose.model<UserModel>('users');
