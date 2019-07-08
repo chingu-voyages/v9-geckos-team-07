@@ -8,7 +8,9 @@ import {
   ActionTypes,
   AccountBookWithTemplate,
   DeleteAccountBookAction,
-  CreateAccountBookFail
+  CreateAccountBookFail,
+  CreateAccountAction,
+  CompleteAccount
 } from './types';
 import { StoreState } from '../reducers';
 
@@ -74,6 +76,25 @@ export function deleteAccountBook(
       dispatch({
         type: ActionTypes.DeleteAccountBook,
         payload: id
+      });
+    }
+  };
+}
+
+export function createNewAccount(
+  account: Account,
+  accountBookId: string
+): ThunkAction<Promise<void>, StoreState, {}, CreateAccountAction> {
+  return async (dispatch): Promise<void> => {
+    const response = await axios.post<CompleteAccount>(
+      `/api/account-books/${accountBookId}/accounts`,
+      account
+    );
+
+    if (response.status === 201 && response.data) {
+      dispatch({
+        type: ActionTypes.NewAccount,
+        payload: response.data
       });
     }
   };
