@@ -1,9 +1,10 @@
 export enum ActionTypes {
-  fetchUser = 'FETCH_USER',
-  fetchUserFail = 'FETCH_USER_FAIL',
-  createAccountBook = 'CREATE_ACCOUNT_BOOK',
-  deleteAccountBook = 'DELETE_ACCOUNT_BOOK',
-  createAccountBookFail = 'CREATE_ACCOUNT_BOOK_FAIL'
+  FetchUser = 'FETCH_USER',
+  FetchUserFail = 'FETCH_USER_FAIL',
+  CreateAccountBook = 'CREATE_ACCOUNT_BOOK',
+  DeleteAccountBook = 'DELETE_ACCOUNT_BOOK',
+  CreateAccountBookFail = 'CREATE_ACCOUNT_BOOK_FAIL',
+  NewAccount = 'NEW_ACCOUNT'
 }
 
 export interface Email {
@@ -59,12 +60,12 @@ export interface CompleteUser extends User {
 }
 
 export interface FetchUser {
-  type: ActionTypes.fetchUser;
+  type: ActionTypes.FetchUser;
   payload: CompleteUser;
 }
 
 export interface FetchUserFail {
-  type: ActionTypes.fetchUserFail;
+  type: ActionTypes.FetchUserFail;
   payload: string;
 }
 
@@ -77,18 +78,22 @@ export interface AccountBookWithTemplate extends AccountBook {
 }
 
 export interface CreateAccountBook {
-  type: ActionTypes.createAccountBook;
+  type: ActionTypes.CreateAccountBook;
   payload: CompleteAccountBook;
 }
 
 export interface CreateAccountBookFail {
-  type: ActionTypes.createAccountBookFail;
+  type: ActionTypes.CreateAccountBookFail;
   payload: string;
 }
 
 export interface DeleteAccountBookAction {
-  type: ActionTypes.deleteAccountBook;
+  type: ActionTypes.DeleteAccountBook;
   payload: string;
+}
+
+export interface CreateAccount {
+  type: ActionTypes.NewAccount;
 }
 
 export type Actions =

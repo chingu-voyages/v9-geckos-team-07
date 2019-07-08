@@ -15,11 +15,11 @@ export function userReducer(
   action: Actions
 ): CompleteUser {
   switch (action.type) {
-    case ActionTypes.fetchUser: {
+    case ActionTypes.FetchUser: {
       return action.payload;
     }
 
-    case ActionTypes.createAccountBook: {
+    case ActionTypes.CreateAccountBook: {
       if (state.accountBooks.length > 0) {
         return {
           ...state,
@@ -30,15 +30,15 @@ export function userReducer(
       return { ...state, accountBooks: [action.payload] };
     }
 
-    case ActionTypes.createAccountBookFail: {
+    case ActionTypes.CreateAccountBookFail: {
       return { ...state, error: action.payload };
     }
 
-    case ActionTypes.fetchUserFail: {
+    case ActionTypes.FetchUserFail: {
       return { ...state, error: action.payload };
     }
 
-    case ActionTypes.deleteAccountBook: {
+    case ActionTypes.DeleteAccountBook: {
       const accountBooks = state.accountBooks.filter(
         book => book._id !== action.payload
       );

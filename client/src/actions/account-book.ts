@@ -38,14 +38,14 @@ export function newAccountBook(
 
       if (response.status === 201 && response.data.accountBook) {
         dispatch({
-          type: ActionTypes.createAccountBook,
+          type: ActionTypes.CreateAccountBook,
           payload: response.data.accountBook
         });
 
         return true;
       } else if (response.status === 200 && response.data.error) {
         dispatch({
-          type: ActionTypes.createAccountBookFail,
+          type: ActionTypes.CreateAccountBookFail,
           payload: response.data.error
         });
 
@@ -53,7 +53,7 @@ export function newAccountBook(
       }
     } catch {
       dispatch({
-        type: ActionTypes.createAccountBookFail,
+        type: ActionTypes.CreateAccountBookFail,
         payload: 'Unknown Error'
       });
 
@@ -72,7 +72,7 @@ export function deleteAccountBook(
 
     if (response.status === 200 && response.data) {
       dispatch({
-        type: ActionTypes.deleteAccountBook,
+        type: ActionTypes.DeleteAccountBook,
         payload: id
       });
     }

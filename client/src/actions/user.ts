@@ -16,12 +16,12 @@ export function fetchUser(): ThunkAction<
       const response = await axios.get<CompleteUser>('/auth/current_user');
 
       dispatch<FetchUser>({
-        type: ActionTypes.fetchUser,
+        type: ActionTypes.FetchUser,
         payload: response.data
       });
     } catch (error) {
       dispatch<FetchUserFail>({
-        type: ActionTypes.fetchUserFail,
+        type: ActionTypes.FetchUserFail,
         payload: 'Something went wrong'
       });
     }
