@@ -126,5 +126,29 @@ export function apiRoutes(): Router {
     }
   );
 
+  router.post(
+    '/account-books/:id/accounts',
+    async (req: Request, res: Response): Promise<void> => {
+      const Account = mongoose.model<Account>('accounts', accountSchema);
+      const account = new Account(req.body);
+
+      const user: UserModel = req.user;
+
+      const accountBookId: string = req.params.id;
+
+      const accountBook = user.accountBooks.find(
+        book => book.id === accountBookId
+      );
+
+      if (accountBook) {
+        accountBook.accounts.push(account);
+      }
+
+      await user.save();
+
+      res.status(201).json(account);
+    }
+  );
+
   return router;
 }
