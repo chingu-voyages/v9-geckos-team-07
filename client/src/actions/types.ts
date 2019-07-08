@@ -92,8 +92,9 @@ export interface DeleteAccountBookAction {
   payload: string;
 }
 
-export interface CreateAccount {
+export interface CreateAccountAction {
   type: ActionTypes.NewAccount;
+  payload: CompleteAccount;
 }
 
 export type Actions =
@@ -101,4 +102,5 @@ export type Actions =
   | FetchUserFail
   | DeleteAccountBookAction
   | CreateAccountBook
-  | CreateAccountBookFail;
+  | CreateAccountBookFail
+  | CreateAccountAction;
