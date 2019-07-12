@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Account, AccountType } from '../../actions';
+import { Account, AccountType } from '../../../../actions';
 
 interface NewAccountFormState {
   account: Account;

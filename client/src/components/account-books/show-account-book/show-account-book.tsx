@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { RouteComponentProps, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { StoreState } from '../../reducers';
-import { CompleteAccount } from '../../actions';
+import { StoreState } from '../../../reducers';
+import { CompleteAccount } from '../../../actions';
 
 import styles from './show-account-book.module.css';
 

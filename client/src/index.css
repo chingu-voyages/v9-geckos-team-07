@@ -28,3 +28,11 @@ a {
 header {
   font-family: Oswald, sans-serif;
 }
+
+.sr-only {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
