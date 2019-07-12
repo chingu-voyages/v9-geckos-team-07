@@ -14,7 +14,7 @@ function checkingBookTemplate(): Account[] {
   const assetAccount: Account = new Account({
     name: 'Assets',
     type: Asset,
-    descripton: '',
+    description: '',
     placeholder: true,
     parent: null
   });
@@ -22,7 +22,7 @@ function checkingBookTemplate(): Account[] {
   const bankAccount: Account = new Account({
     name: 'Checking',
     type: Asset,
-    descripton: 'Checking Account',
+    description: 'Checking Account',
     placeholder: false,
     parent: assetAccount._id
   });
@@ -30,7 +30,7 @@ function checkingBookTemplate(): Account[] {
   const equityAccount: Account = new Account({
     name: 'Equity',
     type: Equity,
-    descripton: '',
+    description: '',
     placeholder: true,
     parent: null
   });
@@ -38,7 +38,7 @@ function checkingBookTemplate(): Account[] {
   const openingBalances: Account = new Account({
     name: 'Opening Balances',
     type: Equity,
-    descripton: 'opening balance',
+    description: 'opening balance',
     placeholder: false,
     parent: equityAccount._id
   });
@@ -46,7 +46,7 @@ function checkingBookTemplate(): Account[] {
   const expenses: Account = new Account({
     name: 'Expenses',
     type: Expense,
-    descripton: 'expenses',
+    description: 'expenses',
     placeholder: false,
     parent: null
   });
