@@ -1,11 +1,11 @@
 import { Schema, Document } from 'mongoose';
 
 export enum AccountType {
-  Asset = 'asset',
-  Equity = 'equity',
-  Income = 'income',
-  Expense = 'expense',
-  Liability = 'liability'
+  Asset = 'Asset',
+  Equity = 'Equity',
+  Income = 'Income',
+  Expense = 'Expense',
+  Liability = 'Liability'
 }
 
 export interface Account extends Document {

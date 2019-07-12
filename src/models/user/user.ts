@@ -1,6 +1,6 @@
 import mongoose, { Document } from 'mongoose';
 
-import { emailSchema, Email } from './email';
+import { emailSchema, EmailModel } from './email';
 import { accountBookSchema, AccountBook } from './accountBook';
 
 const { Schema } = mongoose;
@@ -10,7 +10,7 @@ export interface UserModel extends Document {
   name: string;
   googleId: string;
   photo: string;
-  emails: Email[];
+  emails: EmailModel[];
   accountBooks: AccountBook[];
 }
 
