@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { StoreState } from '../../../reducers';
 import { CompleteAccount } from '../../../actions';
 
-import styles from './show-account-book.module.css';
+import styles from './styles.module.css';
 
 import { NewAccountForm } from './new-account-form';
 
