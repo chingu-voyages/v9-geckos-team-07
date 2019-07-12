@@ -38,6 +38,7 @@
     "@types/node": "^12.6.2",
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.4",
+    "@types/react-helmet": "^5.0.8",
     "@types/react-redux": "^7.1.1",
     "@types/react-router-dom": "^4.3.4",
     "enzyme": "^3.10.0",
