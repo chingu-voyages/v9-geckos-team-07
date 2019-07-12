@@ -3,6 +3,8 @@
 :root {
   font-size: calc(14px + 0.2vw);
   font-family: 'Source Sans Pro', sans-serif;
+  --white: hsl(0, 50%, 97%);
+  --black: hsl(0, 0%, 5%);
 }
 
 *,
@@ -13,6 +15,8 @@
 
 body {
   margin: 0;
+  background-color: var(--white);
+  color: var(--black);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

@@ -5,13 +5,25 @@ import { connect } from 'react-redux';
 import { StoreState } from '../../reducers';
 import { CompleteAccount } from '../../actions';
 
+import styles from './show-account-book.module.css';
+
+import { NewAccountForm } from './new-account-form';
+
 interface AccountBookProps extends RouteComponentProps<{ title: string }> {
   accounts: CompleteAccount[];
 }
 
+interface ShowAccountBookState {
+  showForm: boolean;
+}
+
 type Props = StoreState & AccountBookProps;
 
-export class ShowAccountBook extends Component<Props> {
+export class ShowAccountBook extends Component<Props, ShowAccountBookState> {
+  state = {
+    showForm: false
+  };
+
   private hasChildren(account: CompleteAccount): boolean {
     return this.props.accounts.some(a => a.parent === account._id);
   }
@@ -51,13 +63,27 @@ export class ShowAccountBook extends Component<Props> {
 
       const element = (
         <li key={account._id}>
-          <Link to={`/accounts/${account._id}`}>{account.name}</Link>
+          <Link
+            to={`/account-books/${this.props.match.params.title}/accounts/${
+              account.name
+            }`}
+          >
+            {account.name}
+          </Link>
         </li>
       );
 
       return [...acc, element];
     }, []);
   }
+
+  private showNewAccountForm = (): JSX.Element => {
+    return (
+      <div id={styles.modal}>
+        <NewAccountForm close={() => this.setState({ showForm: false })} />
+      </div>
+    );
+  };
 
   public render(): JSX.Element {
     const {
@@ -66,6 +92,9 @@ export class ShowAccountBook extends Component<Props> {
         params: { title }
       }
     } = this.props;
+
+    const { showForm } = this.state;
+
     return (
       <>
         <header>
@@ -73,6 +102,16 @@ export class ShowAccountBook extends Component<Props> {
         </header>
 
         <ul>{this.renderAccounts([...accounts])}</ul>
+        {showForm ? this.showNewAccountForm() : null}
+
+        <footer>
+          <button
+            type="button"
+            onClick={() => this.setState({ showForm: true })}
+          >
+            Create New Account
+          </button>
+        </footer>
       </>
     );
   }

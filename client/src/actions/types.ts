@@ -26,11 +26,11 @@ export interface CompleteAccountBook extends AccountBook {
 }
 
 export enum AccountType {
-  Assets = 'assets',
-  Equity = 'equity',
-  Income = 'income',
-  Expense = 'expense',
-  Liability = 'liability'
+  Asset = 'Asset',
+  Equity = 'Equity',
+  Income = 'Income',
+  Expense = 'Expense',
+  Liability = 'Liability'
 }
 
 export interface Account {
