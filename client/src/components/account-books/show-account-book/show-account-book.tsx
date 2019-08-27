@@ -8,6 +8,7 @@ import { CompleteAccount } from '../../../actions';
 import styles from './styles.module.css';
 
 import { NewAccountForm } from './new-account-form';
+import { SEO } from '../../seo';
 
 interface AccountBookProps extends RouteComponentProps<{ title: string }> {
   accounts: CompleteAccount[];
@@ -97,6 +98,8 @@ export class ShowAccountBook extends Component<Props, ShowAccountBookState> {
 
     return (
       <>
+        <SEO title={title} />
+
         <header>
           <h2>{title}</h2>
         </header>

@@ -8,6 +8,7 @@ import {
   Template
 } from '../../actions';
 import { StoreState } from '../../reducers';
+import { SEO } from '../seo';
 
 interface NewAccountBookProps extends RouteComponentProps {
   newAccountBook: (accountBook: AccountBook | AccountBookWithTemplate) => void;
@@ -69,6 +70,7 @@ export class NewAccountBook extends Component<NewAccountBookProps> {
 
     return (
       <form action="post" onSubmit={this.onSubmit}>
+        <SEO title="New Account Book" />
         <header>
           <h2>New Account Book</h2>
           <p>{error ? error : ''}</p>

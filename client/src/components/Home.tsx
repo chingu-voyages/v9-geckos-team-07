@@ -1,7 +1,14 @@
 import React from 'react';
+import { SEO } from './seo';
 
 export const Home = (): JSX.Element => (
   <>
+    <SEO
+      keywords={['accounting', 'cash', 'Gecko']}
+      title="Home"
+      description="Accounting application"
+      author="Joseph Morse"
+    />
     <header>
       <h2>Gecko Cash</h2>
     </header>

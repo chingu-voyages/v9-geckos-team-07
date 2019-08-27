@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { StoreState } from '../../reducers';
 import { deleteAccountBook, CompleteUser } from '../../actions';
+import { SEO } from '../seo';
 
 interface AccountBooksProps {
   user: CompleteUser;
@@ -46,6 +47,8 @@ export class AccountBooks extends Component<Props> {
 
     return (
       <>
+        <SEO title="Account Books" description="List of account books" />
+
         <header>
           <h2>Account Books</h2>
         </header>
