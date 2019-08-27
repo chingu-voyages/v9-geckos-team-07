@@ -67,7 +67,7 @@ export function apiRoutes(): Router {
       );
       const template: string = req.body.template;
       const accountBook: AccountBook = req.body;
-      const user: UserModel = req.user;
+      const user = req.user;
       const updateUser: UserModel = new User(user);
       let book: AccountBook;
 
@@ -95,9 +95,13 @@ export function apiRoutes(): Router {
       }
 
       try {
-        await User.updateOne({ _id: user._id }, updateUser);
+        if (user) {
+          await User.updateOne({ _id: user._id }, updateUser);
 
-        return res.status(201).send({ accountBook: book });
+          return res.status(201).send({ accountBook: book });
+        } else {
+          return res.sendStatus(422);
+        }
       } catch (error) {
         return res.status(500).send({ save: false, error });
       }
@@ -107,46 +111,56 @@ export function apiRoutes(): Router {
   router.delete(
     '/account-books/:id',
     async (req: Request, res: Response): Promise<Response> => {
-      const User = mongoose.model<UserModel>('users');
-      const id: string = req.params.id;
+      if (req.user) {
+        const User = mongoose.model<UserModel>('users');
+        const id: string = req.params.id;
 
-      const user = await User.findById(req.user._id);
+        const user = await User.findById(req.user._id);
 
-      if (user) {
-        user.accountBooks = user.accountBooks.filter(book => book.id !== id);
+        if (user) {
+          user.accountBooks = user.accountBooks.filter(book => book.id !== id);
 
-        const updateUser = await user.save();
+          const updateUser = await user.save();
 
-        const wasDelted = !updateUser.accountBooks.find(book => book.id === id);
+          const wasDelted = !updateUser.accountBooks.find(
+            book => book.id === id
+          );
 
-        return res.status(200).send(wasDelted);
+          return res.status(200).send(wasDelted);
+        }
+
+        return res.status(404).json({ error: 'Account Book was not found' });
       }
 
-      return res.status(404).json({ error: 'Account Book was not found' });
+      return res.sendStatus(422);
     }
   );
 
   router.post(
     '/account-books/:id/accounts',
-    async (req: Request, res: Response): Promise<void> => {
-      const Account = mongoose.model<Account>('accounts', accountSchema);
-      const account = new Account(req.body);
+    async (req: Request, res: Response): Promise<Response> => {
+      if (req.user) {
+        const Account = mongoose.model<Account>('accounts', accountSchema);
+        const account = new Account(req.body);
 
-      const user: UserModel = req.user;
+        const user: UserModel = req.user;
 
-      const accountBookId: string = req.params.id;
+        const accountBookId: string = req.params.id;
 
-      const accountBook = user.accountBooks.find(
-        book => book.id === accountBookId
-      );
+        const accountBook = user.accountBooks.find(
+          book => book.id === accountBookId
+        );
 
-      if (accountBook) {
-        accountBook.accounts.push(account);
+        if (accountBook) {
+          accountBook.accounts.push(account);
+        }
+
+        await user.save();
+
+        return res.status(201).json(account);
       }
 
-      await user.save();
-
-      res.status(201).json(account);
+      return res.sendStatus(422);
     }
   );
 
